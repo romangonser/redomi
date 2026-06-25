@@ -4,4 +4,4 @@
 Vermittler zwischen Gestalter:innen und der Community auftritt, die ihre handgemachten,
 kreislauffähigen Produkte kauft und in Auftrag gibt.
 
-→ [Zur Startseite](home.dc.html)
+→ <a href="https://romangonser.github.io/redomi/home.dc.html" target="_blank" rel="noopener">Zur Startseite</a>
