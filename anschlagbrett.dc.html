@@ -171,20 +171,40 @@ class Component extends DCLogic {
     fTitle: "", fDesc: "", fCat: "Möbel", fCity: "", fBudget: "", fConsent: true, fFiles: 0,
   };
 
+  _authPoll = null;
+
   componentDidMount() {
     try { this.setState({ authed: localStorage.getItem("rdm_authed") === "1" }); } catch (e) {}
     import("./shop-data.js").then((mod) => this.setState({ briefs: mod.BRIEFS })).catch(() => {});
   }
+  componentWillUnmount() {
+    clearTimeout(this._authPoll);
+  }
+
+  waitForAuth = (onAuthed) => {
+    clearTimeout(this._authPoll);
+    const tick = () => {
+      try {
+        if (localStorage.getItem("rdm_authed") === "1") {
+          this.setState({ authed: true });
+          onAuthed();
+          return;
+        }
+      } catch (_) {}
+      this._authPoll = setTimeout(tick, 200);
+    };
+    this._authPoll = setTimeout(tick, 200);
+  };
 
   openBrief = (id) => (e) => {
     if (e && e.preventDefault) e.preventDefault();
     if (this.state.authed) {
-      try { sessionStorage.setItem("rdm_brief", id); } catch (_) {}
       try { location.href = "ausschreibung.dc.html?id=" + encodeURIComponent(id); } catch (_) {}
     } else {
-      try { sessionStorage.setItem("rdm_after_login", "ausschreibung.dc.html?id=" + encodeURIComponent(id)); } catch (_) {}
-      try { sessionStorage.setItem("rdm_brief", id); } catch (_) {}
       try { window.dispatchEvent(new CustomEvent("rdm-open-login")); } catch (_) {}
+      this.waitForAuth(() => {
+        try { location.href = "ausschreibung.dc.html?id=" + encodeURIComponent(id); } catch (_) {}
+      });
     }
   };
 
@@ -194,6 +214,7 @@ class Component extends DCLogic {
       this.setState({ createOpen: true, createDone: false });
     } else {
       try { window.dispatchEvent(new CustomEvent("rdm-open-login")); } catch (_) {}
+      this.waitForAuth(() => this.setState({ createOpen: true, createDone: false }));
     }
   };
 

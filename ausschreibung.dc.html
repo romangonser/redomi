@@ -135,6 +135,7 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024}}">
 class Component extends DCLogic {
   state = { brief: null, authed: false, isDesigner: false, sent: false, msg: "", price: "" };
+  _authPoll = null;
 
   componentDidMount() {
     let authed = false, isDesigner = false;
@@ -142,23 +143,38 @@ class Component extends DCLogic {
     try { isDesigner = localStorage.getItem("rdm_is_designer") === "1"; } catch (e) {}
     this.setState({ authed, isDesigner });
 
-    // Datenschutz: Details nur für eingeloggte Nutzer:innen.
     if (!authed) {
       try { window.dispatchEvent(new CustomEvent("rdm-open-login")); } catch (_) {}
-      try { location.href = "anschlagbrett.dc.html"; } catch (_) {}
+      const tick = () => {
+        try {
+          if (localStorage.getItem("rdm_authed") === "1") {
+            this.setState({ authed: true });
+            this.loadBrief();
+            return;
+          }
+        } catch (_) {}
+        this._authPoll = setTimeout(tick, 200);
+      };
+      this._authPoll = setTimeout(tick, 200);
       return;
     }
+    this.loadBrief();
+  }
+  componentWillUnmount() {
+    clearTimeout(this._authPoll);
+  }
 
+  loadBrief = () => {
     let id = "";
     try {
       const params = new URLSearchParams(location.search);
-      id = params.get("id") || sessionStorage.getItem("rdm_brief") || "";
+      id = params.get("id") || "";
     } catch (e) {}
     import("./shop-data.js").then((mod) => {
       const brief = (id ? mod.getBrief(id) : null) || mod.BRIEFS[0];
       this.setState({ brief });
     }).catch(() => {});
-  }
+  };
 
   becomeDesigner = () => {
     try { localStorage.setItem("rdm_is_designer", "1"); } catch (e) {}
