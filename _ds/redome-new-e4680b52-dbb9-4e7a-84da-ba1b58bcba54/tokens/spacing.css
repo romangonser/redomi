@@ -1,0 +1,37 @@
+/* ── Re-Do-Mi · Spacing, radius & layout tokens ──────────────────────
+   Built on an 8px grid. Radii are deliberately tiny (2px / 4px) — the
+   brand reads crisp and editorial, never pill-shaped or soft.           */
+
+:root {
+  /* 8px-grid spacing scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 80px;
+  --space-5xl: 96px;
+
+  /* Layout */
+  --layout-max-width: 1440px;     /* Max content width */
+  --layout-pad-x: 64px;           /* Page horizontal padding */
+  --layout-hero-pad: 80px;        /* Hero vertical padding */
+  --layout-card-gap: 24px;        /* Product grid gap */
+  --layout-carousel-gap: 20px;    /* Carousel item gap */
+  --layout-nav-height: 68px;      /* Nav bar height */
+
+  /* Radius */
+  --radius-default: 2px;          /* Cards, buttons, inputs */
+  --radius-lg: 4px;               /* Larger panels */
+  --radius-tag: 0.5px;            /* Category tag badge (near-square) */
+
+  /* Borders */
+  --border-width: 1px;
+  --border-active: 2px;           /* Active nav underline */
+
+  /* The system is intentionally shadowless — depth comes from hairline
+     borders and the sage/white surface contrast, not drop shadows. */
+  --shadow-none: none;
+}

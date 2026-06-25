@@ -1,0 +1,54 @@
+/* ── Re-Do-Mi · Color tokens ─────────────────────────────────────────
+   Extracted from the Re-Do-Mi Figma design system (COLORS frame).
+   A warm, editorial palette: a single saturated brand yellow against
+   ink, sage-tinted neutrals and a forest-green link accent.            */
+
+:root {
+  /* Brand */
+  --brand-yellow: #f0c93c;          /* Primary CTA · hero accent · footer headings */
+
+  /* Neutrals — sage-tinted greys */
+  --sage-mist: #f4f7f5;             /* Card / image placeholder bg · section bg */
+  --sage-100: #e8ede9;             /* Lighter sage panel */
+  --sage-200: #e2e8e3;             /* Image placeholder fill */
+  --sage-300: #d4dcd5;             /* Sage divider / deepest sage */
+  --ink: #1a1a1a;                   /* Footer bg · primary text */
+  --medium: #474747;                /* Body copy · section labels · announcement bg */
+  --muted: #888888;                 /* Captions · tag borders · icon strokes */
+  --white: #ffffff;
+
+  /* Accent */
+  --forest: #1a1a1a;                /* war Dunkelgrün — jetzt Ink/Schwarz */
+
+  /* Structural — hairlines & light borders */
+  --border-light: rgba(26, 26, 26, 0.10);   /* Card & section hairline */
+  --border-ink: #1a1a1a;                     /* Ghost / nav button border */
+
+  /* On-dark (footer) opacities of white */
+  --on-dark-rule: rgba(255, 255, 255, 0.10);   /* Footer divider rule */
+  --on-dark-strong: rgba(255, 255, 255, 0.70); /* Primary footer link */
+  --on-dark-muted: rgba(255, 255, 255, 0.55);  /* Gated footer link */
+  --on-dark-faint: rgba(255, 255, 255, 0.50);  /* Copyright / legal */
+  --on-dark-field: rgba(255, 255, 255, 0.07);  /* Newsletter input fill */
+  --on-dark-field-border: rgba(255, 255, 255, 0.15);
+
+  /* ── Semantic aliases ───────────────────────────────────────────── */
+  --text-primary: var(--ink);
+  --text-body: var(--medium);
+  --text-muted: var(--muted);
+  --text-on-yellow: var(--ink);
+
+  --surface-page: var(--white);
+  --surface-alt: var(--sage-mist);       /* Alternating sections */
+  --surface-card: var(--white);
+  --surface-image: var(--sage-200);      /* Image placeholder bg */
+  --surface-footer: var(--ink);
+  --surface-announce: var(--medium);
+
+  --accent-cta: var(--brand-yellow);
+  --accent-link: var(--forest);
+
+  --border-card: var(--border-light);
+  --border-tag: var(--muted);            /* Category badge outline */
+  --border-feature: var(--brand-yellow); /* Featured card border */
+}

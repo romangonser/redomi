@@ -1,0 +1,51 @@
+/* ── Re-Do-Mi · Typography tokens ────────────────────────────────────
+   Three families do the work:
+   • Josefin Sans — geometric humanist sans. All UI, headings, labels,
+     buttons. Almost always tracked out (wide letter-spacing) + uppercase
+     for labels.
+   • Playfair Display Italic — high-contrast serif, used ONLY as the
+     italic middle line of the hero H1 and pull-quotes. An editorial flourish.
+   • Lato — the body face. Light (300) is the default weight; warm and quiet.
+   • Courier New — monospace, reserved for spec / code chips in the DS docs. */
+
+:root {
+  --font-display: "Josefin Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif:   "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body:    "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "Courier New", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Weights */
+  --fw-light: 300;     /* @kind font */
+  --fw-regular: 400;   /* @kind font */
+  --fw-medium: 500;    /* @kind font */
+  --fw-semibold: 600;  /* @kind font */
+  --fw-bold: 700;      /* @kind font */
+
+  /* ── Type scale (role → font / size / line-height / tracking) ──────
+     Sizes are the Figma values scaled to a 1× web context (the DS frame
+     was drawn at ~0.5×; figures here are the intended render sizes). */
+
+  /* Display / Headings — Josefin Sans */
+  --type-h1-size: 72px;           --type-h1-leading: 1.0;   --type-h1-tracking: 0;          /* Hero H1 bold lines */
+  --type-h1-serif-size: 64px;     --type-h1-serif-tracking: 0.72px;                          /* Hero H1 italic line (Playfair) */
+  --type-h2-size: 36px;           --type-h2-leading: 1.15;  --type-h2-tracking: 1.44px;     /* Section heading */
+  --type-stat-size: 28px;         --type-stat-tracking: 1.12px;                              /* Stat number */
+
+  /* Labels & UI — Josefin Sans, tracked + uppercase */
+  --type-eyebrow-size: 12px;      --type-eyebrow-tracking: 1.98px;   /* Section label / eyebrow */
+  --type-nav-size: 12px;          --type-nav-tracking: 1.68px;       /* Nav link / button label */
+  --type-announce-size: 11px;     --type-announce-tracking: 1.54px;  /* Announcement bar */
+  --type-tag-size: 9px;           --type-tag-tracking: 1.26px;       /* Category tag badge */
+
+  /* Cards — mixed */
+  --type-card-title-size: 14px;   --type-card-title-tracking: 0.84px;  /* Josefin 700 */
+  --type-card-price-size: 14px;   --type-card-price-tracking: 0.84px;  /* Josefin 600 */
+  --type-category-size: 14px;     --type-category-tracking: 1.68px;    /* Josefin 700, category label */
+  --type-feature-title-size: 16px; --type-feature-title-tracking: 0.84px;
+
+  /* Body — Lato */
+  --type-body-lg-size: 20px;      --type-body-lg-leading: 1.2;     /* Body large, Lato Light */
+  --type-body-size: 14px;         --type-body-leading: 1.7;        /* Body, Lato Light */
+  --type-body-sm-size: 13px;      --type-body-sm-leading: 1.5;     /* Footer links, Lato Light */
+  --type-caption-size: 12px;      --type-caption-leading: 1.5;     /* Captions / sub, often italic */
+}

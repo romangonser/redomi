@@ -1,0 +1,73 @@
+/* ── Re-Do-Mi · base resets & helper classes ─────────────────────────
+   Minimal global defaults so specimens and kits share a baseline.      */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: var(--fw-light);
+  color: var(--text-primary);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Editorial type helpers — used across specimen cards & kits */
+.rdm-eyebrow {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-size: var(--type-eyebrow-size);
+  letter-spacing: var(--type-eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--text-body);
+}
+
+.rdm-h2 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--type-h2-size);
+  line-height: var(--type-h2-leading);
+  letter-spacing: var(--type-h2-tracking);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.rdm-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: var(--fw-regular);
+}
+
+/* ── Hero display title ───────────────────────────────────────────────
+   The three-line brand headline (sans / serif-italic / sans-accent).
+   A flex column with em-based rhythm so the serif middle line gets
+   harmonious breathing room from the sans lines at any font-size. */
+.rdm-hero-title {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: 60px;
+  line-height: 1.0;
+  letter-spacing: -0.4px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.rdm-hero-title > span { display: block; }
+.rdm-hero-title__serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: var(--fw-regular);
+  text-transform: none;
+  letter-spacing: 0.4px;
+  line-height: 1.0;
+   margin: -15px 0px 0px -10px; 
+  padding-top: 0px;
+  padding-bottom: 12px;
+padding-left: 10px;
+}
+.rdm-hero-title__accent {
+  color: var(--brand-yellow);
+}

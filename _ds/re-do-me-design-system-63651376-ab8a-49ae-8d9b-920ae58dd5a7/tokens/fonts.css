@@ -1,0 +1,7 @@
+/* Webfonts — re:do:me uses three Google families:
+   Playfair Display (editorial display serif), Inter (UI/body sans),
+   Roboto Mono (labels, eyebrows, captions). Loaded from Google Fonts CDN.
+   NOTE: substituting the live Google Fonts CDN for self-hosted binaries —
+   if the brand requires self-hosted woff2 files, drop them in assets/fonts/
+   and replace these @import lines with local @font-face rules. */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=Roboto+Mono:wght@400&display=swap");

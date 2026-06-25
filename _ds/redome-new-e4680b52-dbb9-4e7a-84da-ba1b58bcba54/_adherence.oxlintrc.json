@@ -1,0 +1,358 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/badges/**",
+              "components/brand/**",
+              "components/buttons/**",
+              "components/cards/**",
+              "components/footer/**",
+              "components/icons/**",
+              "components/navigation/**",
+              "ui_kits/website/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Josefin Sans|Lato|Playfair Display))/i]",
+        "message": "Font not provided by the design system. Available: Josefin Sans, Lato, Playfair Display."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|icon|children|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, icon, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|ghost|nav)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'ghost' | 'nav'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CategoryBadge'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|key|ref|className|style|children)$/]",
+        "message": "<CategoryBadge> doesn't accept that prop. Declared props: children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CategoryCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:image|label|sub|href|key|ref|className|style|children)$/]",
+        "message": "<CategoryCard> doesn't accept that prop. Declared props: image, label, sub, href."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DesignerCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:image|name|discipline|location|href|key|ref|className|style|children)$/]",
+        "message": "<DesignerCard> doesn't accept that prop. Declared props: image, name, discipline, location, href."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FooterColumn'] > JSXAttribute > JSXIdentifier[name!=/^(?:heading|items|key|ref|className|style|children)$/]",
+        "message": "<FooterColumn> doesn't accept that prop. Declared props: heading, items."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Icon'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|size|strokeWidth|key|ref|className|style|children)$/]",
+        "message": "<Icon> doesn't accept that prop. Declared props: name, size, strokeWidth."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='IconButton'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|children|key|ref|className|style|children)$/]",
+        "message": "<IconButton> doesn't accept that prop. Declared props: label, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Logo'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|size|showWordmark|key|ref|className|style|children)$/]",
+        "message": "<Logo> doesn't accept that prop. Declared props: variant, size, showWordmark."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Logo'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:ink|light)$/]",
+        "message": "<Logo> variant must be one of 'ink' | 'light'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Navbar'] > JSXAttribute > JSXIdentifier[name!=/^(?:announcement|links|activeIndex|onLogin|loggedIn|key|ref|className|style|children)$/]",
+        "message": "<Navbar> doesn't accept that prop. Declared props: announcement, links, activeIndex, onLogin, loggedIn."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ProductCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:image|category|title|designer|price|href|key|ref|className|style|children)$/]",
+        "message": "<ProductCard> doesn't accept that prop. Declared props: image, category, title, designer, price, href."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SeeAllLink'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|href|key|ref|className|style|children)$/]",
+        "message": "<SeeAllLink> doesn't accept that prop. Declared props: children, href."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SocialProofCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:quote|author|role|featured|key|ref|className|style|children)$/]",
+        "message": "<SocialProofCard> doesn't accept that prop. Declared props: quote, author, role, featured."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Button": {
+        "replaces": []
+      },
+      "CategoryBadge": {
+        "replaces": []
+      },
+      "CategoryCard": {
+        "replaces": []
+      },
+      "DesignerCard": {
+        "replaces": []
+      },
+      "FooterColumn": {
+        "replaces": []
+      },
+      "Icon": {
+        "replaces": []
+      },
+      "IconButton": {
+        "replaces": []
+      },
+      "Logo": {
+        "replaces": []
+      },
+      "Navbar": {
+        "replaces": []
+      },
+      "ProductCard": {
+        "replaces": []
+      },
+      "SeeAllLink": {
+        "replaces": []
+      },
+      "SocialProofCard": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent-cta",
+      "--accent-link",
+      "--border-active",
+      "--border-card",
+      "--border-feature",
+      "--border-ink",
+      "--border-light",
+      "--border-tag",
+      "--border-width",
+      "--brand-yellow",
+      "--font-body",
+      "--font-display",
+      "--font-mono",
+      "--font-serif",
+      "--forest",
+      "--fw-bold",
+      "--fw-light",
+      "--fw-medium",
+      "--fw-regular",
+      "--fw-semibold",
+      "--ink",
+      "--layout-card-gap",
+      "--layout-carousel-gap",
+      "--layout-hero-pad",
+      "--layout-max-width",
+      "--layout-nav-height",
+      "--layout-pad-x",
+      "--medium",
+      "--muted",
+      "--on-dark-faint",
+      "--on-dark-field",
+      "--on-dark-field-border",
+      "--on-dark-muted",
+      "--on-dark-rule",
+      "--on-dark-strong",
+      "--radius-default",
+      "--radius-lg",
+      "--radius-tag",
+      "--sage-100",
+      "--sage-200",
+      "--sage-300",
+      "--sage-mist",
+      "--shadow-none",
+      "--space-2xl",
+      "--space-3xl",
+      "--space-4xl",
+      "--space-5xl",
+      "--space-lg",
+      "--space-md",
+      "--space-sm",
+      "--space-xl",
+      "--space-xs",
+      "--surface-alt",
+      "--surface-announce",
+      "--surface-card",
+      "--surface-footer",
+      "--surface-image",
+      "--surface-page",
+      "--text-body",
+      "--text-muted",
+      "--text-on-yellow",
+      "--text-primary",
+      "--type-announce-size",
+      "--type-announce-tracking",
+      "--type-body-leading",
+      "--type-body-lg-leading",
+      "--type-body-lg-size",
+      "--type-body-size",
+      "--type-body-sm-leading",
+      "--type-body-sm-size",
+      "--type-caption-leading",
+      "--type-caption-size",
+      "--type-card-price-size",
+      "--type-card-price-tracking",
+      "--type-card-title-size",
+      "--type-card-title-tracking",
+      "--type-category-size",
+      "--type-category-tracking",
+      "--type-eyebrow-size",
+      "--type-eyebrow-tracking",
+      "--type-feature-title-size",
+      "--type-feature-title-tracking",
+      "--type-h1-leading",
+      "--type-h1-serif-size",
+      "--type-h1-serif-tracking",
+      "--type-h1-size",
+      "--type-h1-tracking",
+      "--type-h2-leading",
+      "--type-h2-size",
+      "--type-h2-tracking",
+      "--type-nav-size",
+      "--type-nav-tracking",
+      "--type-stat-size",
+      "--type-stat-tracking",
+      "--type-tag-size",
+      "--type-tag-tracking",
+      "--white"
+    ],
+    "tokenKinds": {
+      "--brand-yellow": "color",
+      "--sage-mist": "color",
+      "--sage-100": "color",
+      "--sage-200": "color",
+      "--sage-300": "color",
+      "--ink": "color",
+      "--medium": "color",
+      "--muted": "color",
+      "--white": "color",
+      "--forest": "color",
+      "--border-light": "color",
+      "--border-ink": "color",
+      "--on-dark-rule": "color",
+      "--on-dark-strong": "color",
+      "--on-dark-muted": "color",
+      "--on-dark-faint": "color",
+      "--on-dark-field": "color",
+      "--on-dark-field-border": "color",
+      "--text-primary": "font",
+      "--text-body": "font",
+      "--text-muted": "font",
+      "--text-on-yellow": "font",
+      "--surface-page": "color",
+      "--surface-alt": "color",
+      "--surface-card": "color",
+      "--surface-image": "color",
+      "--surface-footer": "color",
+      "--surface-announce": "color",
+      "--accent-cta": "color",
+      "--accent-link": "color",
+      "--border-card": "color",
+      "--border-tag": "color",
+      "--border-feature": "color",
+      "--font-display": "font",
+      "--font-serif": "font",
+      "--font-body": "font",
+      "--font-mono": "font",
+      "--fw-light": "font",
+      "--fw-regular": "font",
+      "--fw-medium": "font",
+      "--fw-semibold": "font",
+      "--fw-bold": "font",
+      "--type-h1-size": "font",
+      "--type-h1-leading": "font",
+      "--type-h1-tracking": "font",
+      "--type-h1-serif-size": "font",
+      "--type-h1-serif-tracking": "font",
+      "--type-h2-size": "font",
+      "--type-h2-leading": "font",
+      "--type-h2-tracking": "font",
+      "--type-stat-size": "font",
+      "--type-stat-tracking": "font",
+      "--type-eyebrow-size": "font",
+      "--type-eyebrow-tracking": "font",
+      "--type-nav-size": "font",
+      "--type-nav-tracking": "font",
+      "--type-announce-size": "font",
+      "--type-announce-tracking": "font",
+      "--type-tag-size": "font",
+      "--type-tag-tracking": "font",
+      "--type-card-title-size": "font",
+      "--type-card-title-tracking": "font",
+      "--type-card-price-size": "font",
+      "--type-card-price-tracking": "font",
+      "--type-category-size": "font",
+      "--type-category-tracking": "font",
+      "--type-feature-title-size": "font",
+      "--type-feature-title-tracking": "font",
+      "--type-body-lg-size": "font",
+      "--type-body-lg-leading": "font",
+      "--type-body-size": "font",
+      "--type-body-leading": "font",
+      "--type-body-sm-size": "font",
+      "--type-body-sm-leading": "font",
+      "--type-caption-size": "font",
+      "--type-caption-leading": "font",
+      "--space-xs": "spacing",
+      "--space-sm": "spacing",
+      "--space-md": "spacing",
+      "--space-lg": "spacing",
+      "--space-xl": "spacing",
+      "--space-2xl": "spacing",
+      "--space-3xl": "spacing",
+      "--space-4xl": "spacing",
+      "--space-5xl": "spacing",
+      "--layout-max-width": "spacing",
+      "--layout-pad-x": "spacing",
+      "--layout-hero-pad": "spacing",
+      "--layout-card-gap": "spacing",
+      "--layout-carousel-gap": "spacing",
+      "--layout-nav-height": "spacing",
+      "--radius-default": "radius",
+      "--radius-lg": "radius",
+      "--radius-tag": "radius",
+      "--border-width": "spacing",
+      "--border-active": "spacing",
+      "--shadow-none": "shadow"
+    },
+    "fontFamilies": [
+      "Josefin Sans",
+      "Lato",
+      "Playfair Display"
+    ]
+  }
+}
