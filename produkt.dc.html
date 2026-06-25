@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/base.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/styles.css">
+  <script src="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #fff; }
+    * { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
+    .sc-placeholder { border-color: transparent !important; background: transparent !important; box-shadow: none !important; }
+    .rdm-slider::-webkit-scrollbar { display: none; }
+    .rdm-slider { scrollbar-width: none; scroll-behavior: smooth; }
+  </style>
+</helmet>
+<div style="background: var(--white); min-height: 100vh; padding-top: var(--rdm-header-h, 104px);">
+
+  <dc-import name="Header" active="products" hint-size="100%,104px"></dc-import>
+
+  <!-- breadcrumb -->
+  <div style="max-width: 1440px; margin: 0 auto; padding: 28px 64px 0; display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">
+    <a href="produkte.dc.html" style="color: var(--muted); text-decoration: none;" style-hover="color: var(--ink);">Produkte</a>
+    <span>›</span>
+    <span style="color: var(--ink);">{{ title }}</span>
+  </div>
+
+  <section style="max-width: 1440px; margin: 0 auto; padding: 32px 64px 88px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 64px; align-items: start;">
+
+    <!-- ── Gallery ── -->
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="width: 100%; aspect-ratio: 4 / 3.4; border-radius: 4px; background: var(--surface-alt) url({{ activeImg }}) center / cover no-repeat;"></div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+        <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="3">
+          <button onClick="{{ t.onClick }}" aria-label="Bild ansehen" style="width: 100%; aspect-ratio: 1 / 1; border-radius: 2px; border: 1px solid {{ t.border }}; cursor: pointer; padding: 0; background: var(--surface-alt) url({{ t.img }}) center / cover no-repeat;"></button>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- ── Info ── -->
+    <div style="display: flex; flex-direction: column; gap: 22px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--white); background: var(--ink); padding: 5px 10px; border-radius: 0.5px;">{{ category }}</span>
+      </div>
+
+      <h1 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 40px; line-height: 1.05; letter-spacing: -0.2px; color: var(--ink);">{{ title }}</h1>
+
+      <!-- designer row -->
+      <div style="display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+        <a href="{{ designerHref }}" onClick="{{ goDesigner }}" style="display: inline-flex; align-items: center; gap: 12px; text-decoration: none; flex: 1;">
+          <span style="width: 46px; height: 46px; border-radius: 50%; background: var(--surface-alt) url({{ designerPhoto }}) center / cover no-repeat; flex: none;"></span>
+          <span style="display: flex; flex-direction: column;">
+            <span style="font-family: var(--font-body); font-weight: 300; font-size: 12px; color: var(--muted);">Gefertigt von</span>
+            <span style="font-family: var(--font-display); font-weight: 600; font-size: 15px; letter-spacing: 0.3px; color: var(--ink); border-bottom: 1px solid var(--forest); padding-bottom: 1px; width: fit-content;">{{ designerName }} →</span>
+          </span>
+        </a>
+        
+      </div>
+
+      <span style="font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: 0.4px; color: var(--ink);">{{ priceLabel }}</span>
+
+      <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.75; color: var(--medium);">{{ story }}</p>
+
+      <!-- spec table -->
+      <div style="display: grid; grid-template-columns: 120px 1fr; gap: 10px 16px; padding: 6px 0 18px;">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Material</span>
+        <span style="font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink);">{{ material }}</span>
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Standort</span>
+        <span style="font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink);">{{ city }}</span>
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Lieferzeit</span>
+        <span style="font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink);">Versandfertig in 3–5 Werktagen</span>
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Unikat</span>
+        <span style="font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink);">Ja — handgefertigtes Einzelstück</span>
+      </div>
+
+      <!-- add to cart + wishlist -->
+      <div style="display: flex; gap: 14px; align-items: stretch;">
+        <button onClick="{{ addToCart }}" style="flex: 1; height: 64px; background: var(--brand-yellow); color: var(--ink); border: none; border-radius: 2px; padding: 0 34px; font-family: var(--font-display); font-weight: 600; font-size: 16px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer;" style-hover="background: #e0b92e;">In den Warenkorb</button>
+        <button onClick="{{ toggleFav }}" aria-label="Auf die Wunschliste" title="Auf die Wunschliste" style="width: 64px; height: 64px; flex: none; display: inline-flex; align-items: center; justify-content: center; background: var(--white); border: 1px solid var(--border-light); border-radius: 2px; cursor: pointer; transition: border-color .18s ease;" style-hover="border-color: var(--ink);">
+          <sc-if value="{{ isFav }}" hint-placeholder-val="{{ false }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="var(--brand-yellow)" stroke="var(--ink)" stroke-width="1.4" stroke-linejoin="round"><path d="M12 20.5 4.2 12.9a4.6 4.6 0 0 1 6.5-6.5l1.3 1.3 1.3-1.3a4.6 4.6 0 0 1 6.5 6.5L12 20.5Z"></path></svg></sc-if>
+          <sc-if value="{{ notFav }}" hint-placeholder-val="{{ true }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linejoin="round"><path d="M12 20.5 4.2 12.9a4.6 4.6 0 0 1 6.5-6.5l1.3 1.3 1.3-1.3a4.6 4.6 0 0 1 6.5 6.5L12 20.5Z"></path></svg></sc-if>
+        </button>
+      </div>
+      <p style="margin: -6px 0 0; font-family: var(--font-body); font-style: italic; font-weight: 300; font-size: 13px; color: var(--muted);">Unikat — nur ein Stück verfügbar. Versand &amp; Abholung vereinbarst du direkt mit {{ designerName }}.</p>
+    </div>
+  </section>
+
+  <!-- ── Slider: Mehr von Designer:in ── -->
+  <sc-if value="{{ hasMore }}" hint-placeholder-val="{{ false }}">
+    <section style="background: var(--surface-alt);">
+      <div style="max-width: 1440px; margin: 0 auto; padding: 72px 64px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 36px;">
+          <h2 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 30px; line-height: 1.15; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink);">Mehr von {{ designerName }}</h2>
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <a href="{{ designerHref }}" onClick="{{ goDesigner }}" style="text-decoration: none; font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--forest); border-bottom: 1px solid var(--forest); padding-bottom: 3px;">Ganzes Profil →</a>
+            <div style="display: flex; gap: 8px;">
+              <button onClick="{{ slideMoreLeft }}" aria-label="Zurück" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--ink); background: var(--white); cursor: pointer; color: var(--ink); font-size: 16px;" style-hover="background: var(--ink); color: var(--white);">←</button>
+              <button onClick="{{ slideMoreRight }}" aria-label="Weiter" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--ink); background: var(--white); cursor: pointer; color: var(--ink); font-size: 16px;" style-hover="background: var(--ink); color: var(--white);">→</button>
+            </div>
+          </div>
+        </div>
+        <div ref="{{ moreRef }}" class="rdm-slider" style="display: flex; gap: 24px; overflow-x: auto; padding-bottom: 4px;">
+          <sc-for list="{{ more }}" as="m" hint-placeholder-count="4">
+            <div style="flex: 0 0 300px;">
+              <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.ProductCard" image="{{ m.img }}" category="{{ m.catUpper }}" title="{{ m.title }}" designer="{{ designerName }}" price="{{ m.priceLabel }}" onClick="{{ m.open }}" hint-size="100%,330px"></x-import>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ── Slider: Das könnte dich interessieren ── -->
+  <section style="background: var(--white);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 80px 64px;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 36px;">
+        <h2 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 30px; line-height: 1.15; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink);">Das könnte dich auch interessieren</h2>
+        <div style="display: flex; gap: 8px;">
+          <button onClick="{{ slideRelLeft }}" aria-label="Zurück" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--ink); background: var(--white); cursor: pointer; color: var(--ink); font-size: 16px;" style-hover="background: var(--ink); color: var(--white);">←</button>
+          <button onClick="{{ slideRelRight }}" aria-label="Weiter" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--ink); background: var(--white); cursor: pointer; color: var(--ink); font-size: 16px;" style-hover="background: var(--ink); color: var(--white);">→</button>
+        </div>
+      </div>
+      <div ref="{{ relRef }}" class="rdm-slider" style="display: flex; gap: 24px; overflow-x: auto; padding-bottom: 4px;">
+        <sc-for list="{{ related }}" as="r" hint-placeholder-count="5">
+          <div style="flex: 0 0 300px;">
+            <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.ProductCard" image="{{ r.img }}" category="{{ r.catUpper }}" title="{{ r.title }}" designer="{{ r.designerName }}" price="{{ r.priceLabel }}" onClick="{{ r.open }}" hint-size="100%,330px"></x-import>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Designer preview ── -->
+  <section style="background: var(--surface-alt); border-top: 1px solid var(--border-light);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 72px 64px; display: grid; grid-template-columns: auto 1fr auto; gap: 40px; align-items: center;">
+      <span style="width: 130px; height: 130px; border-radius: 50%; background: var(--white) url({{ designerPhoto }}) center / cover no-repeat; flex: none;"></span>
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 620px;">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Die:der Designer:in</span>
+        <h2 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: 0.3px; color: var(--ink);">{{ designerName }}</h2>
+        <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.7; color: var(--medium);">{{ designerBio }}</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; align-items: stretch;">
+        <a href="{{ designerHref }}" onClick="{{ goDesigner }}" style="text-decoration: none; text-align: center; background: var(--brand-yellow); color: var(--ink); border-radius: 2px; padding: 14px 28px; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; white-space: nowrap;">Profil ansehen →</a>
+        <button onClick="{{ contact }}" style="background: transparent; color: var(--ink); border: 1px solid var(--ink); border-radius: 2px; padding: 14px 28px; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; cursor: pointer; white-space: nowrap;" style-hover="background: var(--ink); color: var(--white);">Kontakt aufnehmen</button>
+      </div>
+    </div>
+  </section>
+
+  <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Footer" hint-size="100%,560px"></x-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024}}">
+class Component extends DCLogic {
+  moreRef = React.createRef();
+  relRef = React.createRef();
+  state = { data: null, activeIdx: 0, favs: [], authed: false, qty: 1, allMod: null };
+
+  componentDidMount() {
+    try { this.setState({ authed: localStorage.getItem("rdm_authed") === "1" }); } catch (e) {}
+    try {
+      const f = JSON.parse(localStorage.getItem("rdm_favs") || "[]");
+      if (Array.isArray(f)) this.setState({ favs: f });
+    } catch (e) {}
+    let id = "";
+    try {
+      const params = new URLSearchParams(location.search);
+      id = params.get("id") || sessionStorage.getItem("rdm_product") || "";
+    } catch (e) {}
+    import("./shop-data.js").then((mod) => {
+      const data = id ? mod.getProduct(id) : null;
+      const fallback = data || mod.getProduct(mod.PRODUCTS[0].id);
+      this.setState({ data: fallback, allMod: mod, activeIdx: 0, qty: 1 });
+    }).catch(() => {});
+  }
+
+  toggleFav = (title) => {
+    this.setState((s) => {
+      const favs = s.favs.includes(title) ? s.favs.filter((t) => t !== title) : [...s.favs, title];
+      try { localStorage.setItem("rdm_favs", JSON.stringify(favs)); } catch (e) {}
+      try { window.dispatchEvent(new CustomEvent("rdm-fav-changed", { detail: { count: favs.length } })); } catch (e) {}
+      return { favs };
+    });
+  };
+
+  openProduct = (id) => {
+    try { sessionStorage.setItem("rdm_product", id); } catch (e) {}
+    try { location.href = "produkt.dc.html?id=" + encodeURIComponent(id); } catch (e) {}
+  };
+
+  gotoDesigner = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const d = this.state.data && this.state.data.designer;
+    if (!d) return;
+    try { sessionStorage.setItem("rdm_designer", d.id); } catch (_) {}
+    try { location.href = "designer-profil.dc.html?id=" + encodeURIComponent(d.id); } catch (_) {}
+  };
+
+  contact = () => {
+    if (this.state.authed) { try { location.href = "dashboard.dc.html"; } catch (_) {} }
+    else { try { window.dispatchEvent(new CustomEvent("rdm-open-login")); } catch (_) {} }
+  };
+
+  addToCart = () => {
+    const d = this.state.data;
+    if (!d) return;
+    try {
+      window.dispatchEvent(new CustomEvent("rdm-add-to-cart", { detail: { id: d.id, title: d.title, price: d.price, img: d.img, qty: this.state.qty } }));
+    } catch (_) {}
+  };
+
+  scrollBy = (ref, dir) => {
+    const el = ref.current;
+    if (el) el.scrollBy({ left: dir * 340, behavior: "smooth" });
+  };
+
+  renderVals() {
+    const d = this.state.data;
+    if (!d) return { title: "Lädt …", thumbs: [], more: [], related: [], hasMore: false };
+    const designer = d.designer || { name: "Re-Do-Mi Designer:in", photo: "", id: "", bio: "" };
+    const all = this.state.allMod ? this.state.allMod.PRODUCTS : [];
+    const more = all.filter((p) => p.designerId === d.designerId && p.id !== d.id).slice(0, 6);
+    const related = all.filter((p) => p.designerId !== d.designerId).slice(0, 8);
+    const chf = (n) => "CHF " + n.toLocaleString("de-CH");
+    const dn = (id) => (this.state.allMod ? this.state.allMod.designerName(id) : "");
+
+    return {
+      title: d.title,
+      category: d.cat.toUpperCase(),
+      priceLabel: chf(d.price),
+      story: d.story,
+      material: d.mat,
+      city: d.city,
+      qty: this.state.qty,
+      incQty: () => this.setState((s) => ({ qty: s.qty + 1 })),
+      decQty: () => this.setState((s) => ({ qty: Math.max(1, s.qty - 1) })),
+      addToCart: this.addToCart,
+      activeImg: d.gallery[this.state.activeIdx] || d.gallery[0],
+      thumbs: d.gallery.map((img, i) => ({
+        img,
+        border: i === this.state.activeIdx ? "var(--ink)" : "var(--border-light)",
+        onClick: () => this.setState({ activeIdx: i }),
+      })),
+      designerName: designer.name,
+      designerPhoto: designer.photo,
+      designerBio: designer.bio,
+      designerHref: "designer-profil.dc.html",
+      goDesigner: this.gotoDesigner,
+      contact: this.contact,
+      isFav: this.state.favs.includes(d.title),
+      notFav: !this.state.favs.includes(d.title),
+      toggleFav: () => this.toggleFav(d.title),
+      hasMore: more.length > 0,
+      moreRef: this.moreRef,
+      relRef: this.relRef,
+      slideMoreLeft: () => this.scrollBy(this.moreRef, -1),
+      slideMoreRight: () => this.scrollBy(this.moreRef, 1),
+      slideRelLeft: () => this.scrollBy(this.relRef, -1),
+      slideRelRight: () => this.scrollBy(this.relRef, 1),
+      more: more.map((m) => ({
+        img: m.img, title: m.title, catUpper: m.cat.toUpperCase(),
+        priceLabel: chf(m.price), open: () => this.openProduct(m.id),
+      })),
+      related: related.map((r) => ({
+        img: r.img, title: r.title, catUpper: r.cat.toUpperCase(),
+        designerName: dn(r.designerId), priceLabel: chf(r.price),
+        open: () => this.openProduct(r.id),
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

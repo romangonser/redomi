@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Editor / OS clutter
+*.swp
+*~
+Thumbs.db
+
+# Local Claude Code settings (keep shared config out of personal overrides)
+.claude/settings.local.json
+
+# Working scratch — temporary uploads & QA screenshots, not part of the prototype
+uploads/
+screenshots/
+assets/aktuell-temp/

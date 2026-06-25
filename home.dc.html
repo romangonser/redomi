@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/base.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/styles.css">
+  <script src="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #fff; }
+    * { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
+    .sc-placeholder { border-color: transparent !important; background: transparent !important; box-shadow: none !important; }
+    .rdm-scroll::-webkit-scrollbar { display: none; }
+  </style>
+</helmet>
+<div style="background: var(--white); min-height: 100vh; padding-top: var(--rdm-header-h, 104px);">
+
+  <dc-import name="Header" active="home" hint-size="100%,104px"></dc-import>
+
+  <!-- ════════ HERO ════════ -->
+  <section style="background: var(--white);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 0 64px; display: grid; grid-template-columns: 1fr 1fr; min-height: 600px;">
+      <div style="display: flex; flex-direction: column; justify-content: center; gap: 30px; padding: 80px 80px 80px 0;">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">SCHWEIZ · KREISLAUFWIRTSCHAFT · UPCYCLING</span>
+        <h1 class="rdm-hero-title" style="letter-spacing: -0.5px;"><span>Der Markt</span><span class="rdm-hero-title__serif">für Upcycling</span><span class="rdm-hero-title__accent">Kreationen.</span></h1>
+        <p style="margin: 0; max-width: 440px; font-family: var(--font-body); font-weight: 300; font-size: 17px; line-height: 1.7; color: var(--medium);">Re-Do-Mi ist der Vermittler innerhalb der Upcycle-Szene — eine Plattform, wo Gestalter:innen ihre Kreationen zeigen, und Kund:innen direkt in Kontakt treten können.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Button" variant="primary" onClick="{{ goProducts }}" hint-size="auto,48px">Produkte entdecken →</x-import>
+          <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Button" variant="ghost" onClick="{{ goDesigners }}" hint-size="auto,48px">Designer:innen kennenlernen</x-import>
+        </div>
+        <div style="display: flex; gap: 48px; padding-top: 28px; border-top: 1px solid var(--border-light);">
+          <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: 1.12px; color: var(--ink);">140+</span><span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Aktive Designer:innen</span></div>
+          <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: 1.12px; color: var(--ink);">800+</span><span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Kreationen</span></div>
+          <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: 1.12px; color: var(--ink);">6</span><span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Kategorien</span></div>
+        </div>
+      </div>
+      <div style="position: relative; background: url(assets/hero-shop.jpg) center / cover no-repeat; margin: 0 -64px 0 0; min-height: 600px;"></div>
+    </div>
+  </section>
+
+  <!-- ════════ NEUHEITEN ════════ -->
+  <section style="background: var(--white);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 96px 64px;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Neuheiten</span>
+          <h2 style="margin: 0; max-width: 560px; font-family: var(--font-display); font-weight: 700; font-size: 36px; line-height: 1.15; letter-spacing: 1.44px; text-transform: uppercase; color: var(--ink);">Frisch aus dem Ofen</h2>
+        </div>
+        <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.SeeAllLink" onClick="{{ goProducts }}" hint-size="auto,20px">Alle ansehen →</x-import>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-top: 48px;">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="5">
+          <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.ProductCard" image="{{ p.image }}" category="{{ p.category }}" title="{{ p.title }}" designer="{{ p.designer }}" price="{{ p.price }}" onClick="{{ goProducts }}" hint-size="100%,330px"></x-import>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ KATEGORIEN ════════ -->
+  <section style="background: var(--surface-alt);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 96px 64px;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Kategorien</span>
+          <h2 style="margin: 0; max-width: 560px; font-family: var(--font-display); font-weight: 700; font-size: 36px; line-height: 1.15; letter-spacing: 1.44px; text-transform: uppercase; color: var(--ink);">Was findest du hier?</h2>
+        </div>
+      </div>
+      <div class="rdm-scroll" style="display: flex; gap: 24px; overflow-x: auto; margin-top: 48px; padding-bottom: 4px;">
+        <sc-for list="{{ categories }}" as="c" hint-placeholder-count="5">
+          <div style="flex: 0 0 auto; width: 290px;">
+            <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.CategoryCard" image="{{ c.image }}" label="{{ c.label }}" sub="{{ c.sub }}" onClick="{{ goProducts }}" hint-size="100%,440px"></x-import>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ COMMUNITY / DESIGNER ════════ -->
+  <section style="background: var(--white);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 96px 64px;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Community</span>
+          <h2 style="margin: 0; max-width: 560px; font-family: var(--font-display); font-weight: 700; font-size: 36px; line-height: 1.15; letter-spacing: 1.44px; text-transform: uppercase; color: var(--ink);">Lerne unsere Designer:innen kennen</h2>
+        </div>
+        <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.SeeAllLink" onClick="{{ goDesigners }}" hint-size="auto,20px">Alle ansehen →</x-import>
+      </div>
+      <div class="rdm-scroll" style="display: flex; gap: 24px; overflow-x: auto; margin-top: 48px; padding-bottom: 4px;">
+        <sc-for list="{{ designers }}" as="d" hint-placeholder-count="4">
+          <div style="flex: 0 0 auto; width: 300px;">
+            <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.DesignerCard" image="{{ d.image }}" name="{{ d.name }}" discipline="{{ d.discipline }}" location="{{ d.location }}" onClick="{{ goDesigners }}" hint-size="100%,420px"></x-import>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ STIMMEN ════════ -->
+  <section style="background: var(--surface-alt);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 96px 64px;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Stimmen</span>
+          <h2 style="margin: 0; max-width: 560px; font-family: var(--font-display); font-weight: 700; font-size: 36px; line-height: 1.15; letter-spacing: 1.44px; text-transform: uppercase; color: var(--ink);">Was die Community sagt</h2>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;">
+        <sc-for list="{{ quotes }}" as="qt" hint-placeholder-count="3">
+          <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.SocialProofCard" quote="{{ qt.quote }}" author="{{ qt.author }}" role="{{ qt.role }}" featured="{{ qt.featured }}" hint-size="100%,240px"></x-import>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ PARTNERS ════════ -->
+  <section style="background: var(--white); border-top: 1px solid var(--border-light);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 64px; display: flex; align-items: center; gap: 80px;">
+      <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Partners</span>
+      <div style="display: flex; gap: 64px; align-items: center;">
+        <span style="font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: 1px; color: var(--muted);">OFFCUT</span>
+        <span style="font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: 1px; color: var(--muted);">mind-map</span>
+        <span style="font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: 1px; color: var(--muted);">KlimUp</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ FOOTER ════════ -->
+  <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Footer" hint-size="100%,560px"></x-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024}}">
+class Component extends DCLogic {
+  go(file) { try { location.href = file; } catch (e) {} }
+
+  renderVals() {
+    const A = "assets/";
+    const U = (id) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=640&q=70`;
+
+    const products = [
+      { title: "Sneaker High – Green Tiger", designer: "Elephbo", category: "MODE", price: "CHF 99", image: A + "product-sneaker.jpg" },
+      { title: "Travelling Companions", designer: "Kirsty Elson Designs", category: "KUNST", price: "CHF 55", image: U("1493106641515-6b5631de4bb9") },
+      { title: "Casual, neu gedacht", designer: "Re-Wear Zürich", category: "MODE", price: "CHF 140", image: U("1483985988355-763728e1935b") },
+      { title: "SULA – Massivholzbett", designer: "André Mailfert", category: "WOHNEN", price: "CHF 830", image: U("1567538096630-e0c55bd6374c") },
+      { title: "Lesekissen CORAL", designer: "Sprungbrett / Palettino", category: "OBJEKTE", price: "CHF 20", image: U("1584100936595-c0654b55a2e2") },
+    ];
+    const categories = [
+      { label: "ACCESSOIRES", sub: "Kleider & Accessoires", image: A + "category-kleider.jpg" },
+      { label: "WOHNEN", sub: "Interieur & Deko", image: U("1532372320572-cda25653a26d") },
+      { label: "OBJEKTE", sub: "Unikate & Szene", image: U("1578500494198-246f612d3b3d") },
+      { label: "KUNST", sub: "Kunst & Handwerk", image: U("1493106641515-6b5631de4bb9") },
+      { label: "SCHMUCK", sub: "Schmuck & Mehr", image: U("1611652022419-a9419f74343d") },
+    ];
+    const designers = [
+      { name: "Leila Amrani", discipline: "Textil & Mode", location: "Zürich", image: A + "designer-portrait.jpg" },
+      { name: "The Froschprince", discipline: "Möbel & Holz", location: "Basel", image: U("1500648767791-00dcc994a43e") },
+      { name: "Marie Berger", discipline: "Objekte & Kunst", location: "Bern", image: U("1438761681033-6461ffad8d80") },
+      { name: "Jaz Volpe", discipline: "Möbel & Kunst", location: "Luzern", image: U("1507003211169-0a1dd7228f2d") },
+    ];
+    const quotes = [
+      { quote: "Re-Do-Mi hat mir als Designerin eine echte Bühne gegeben. Ich erreiche Kund:innen, die meine Arbeit wirklich verstehen.", author: "Sophie Kraft", role: "Keramikerin, Basel", featured: true },
+      { quote: "Ich habe über das Anschlagbrett genau die Schneiderin gefunden, die ich für mein Upcycling-Projekt gesucht hatte. Schnell, direkt, persönlich.", author: "Dominique Hofer", role: "Kundin, Zürich", featured: true },
+      { quote: "Als Plattform, die Kreislaufwirtschaft wirklich lebt, ist Re-Do-Mi für uns ein unverzichtbarer Partner.", author: "OFFCUT Initiative", role: "Partnernetzwerk", featured: true },
+    ];
+
+    return {
+      products, categories, designers, quotes,
+      goProducts: () => this.go("produkte.dc.html"),
+      goDesigners: () => this.go("designer.dc.html"),
+    };
+  }
+}
+</script>
+</body>
+</html>

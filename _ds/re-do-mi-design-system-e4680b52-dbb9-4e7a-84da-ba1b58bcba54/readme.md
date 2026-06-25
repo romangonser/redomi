@@ -20,7 +20,7 @@ and real, warm-toned product/maker photography.
 
 This system was reconstructed from a Figma file the user provided:
 
-- **Figma file:** `re_do_me-claude_20260619.fig`
+- **Figma file:** `re_do_mi-claude_20260619.fig`
 - **Scope (9 frames):** `Design-System` page — `COLORS`, `TYPOGRAPHY`,
   `SPACING`, `BUTTONS`, `BADGES-LINKS`, `CARDS`, `NAVIGATION`, `FOOTER` — plus the
   `Home / Homepage-Guest` frame and the `Components` page (ProductCard, CategoryCard,

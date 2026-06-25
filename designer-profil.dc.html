@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/base.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/styles.css">
+  <script src="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #fff; }
+    * { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
+    .sc-placeholder { border-color: transparent !important; background: transparent !important; box-shadow: none !important; }
+  </style>
+</helmet>
+<div style="background: var(--white); min-height: 100vh; padding-top: var(--rdm-header-h, 104px);">
+
+  <dc-import name="Header" active="designers" hint-size="100%,104px"></dc-import>
+
+  <!-- ── Profile head ── -->
+  <section style="max-width: 1440px; margin: 0 auto; padding: 32px 64px 0;">
+    <div style="position: relative; width: 100%; height: 300px; border-radius: 4px; overflow: hidden; background: var(--surface-alt) url({{ cover }}) center / cover no-repeat;">
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,26,26,0) 35%, rgba(26,26,26,0.55) 100%);"></div>
+    </div>
+    <div style="position: relative; z-index: 2; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin: -32px 0 32px 0; padding: 0px 24px">
+      <div style="display: flex; align-items: flex-end; gap: 24px">
+        <span style="width: 132px; height: 132px; border-radius: 50%; border: 4px solid var(--white); background: var(--surface-alt) url({{ photo }}) center / cover no-repeat; flex: none;"></span>
+        <div style="display: flex; flex-direction: column; gap: 8px; padding-bottom: 8px;">
+          <h1 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 44px; line-height: 1; letter-spacing: -0.3px; color: var(--ink);">{{ name }}</h1>
+          <div style="display: flex; align-items: center; gap: 16px; font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">
+            <span>📍 {{ location }}</span>
+          </div>
+        </div>
+      </div>
+      <button onClick="{{ contact }}" style="background: var(--brand-yellow); color: var(--ink); border: none; border-radius: 2px; padding: 15px 32px; font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 1.4px; text-transform: uppercase; cursor: pointer; margin-bottom: 8px;" style-hover="background: #e0b92e;">Kontakt aufnehmen →</button>
+    </div>
+  </section>
+
+  <!-- ── Bio + materials ── -->
+  <section style="max-width: 1440px; margin: 0 auto; padding: 56px 64px 0; display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: start;">
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Über</span>
+      <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 18px; line-height: 1.75; color: var(--ink);">{{ bio }}</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 20px; padding: 28px; background: var(--surface-alt); border-radius: 4px;">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Arbeitet mit</span>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <sc-for list="{{ materials }}" as="m" hint-placeholder-count="3">
+            <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink); border: 1px solid var(--muted); border-radius: 2px; padding: 7px 13px;">{{ m }}</span>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: flex; gap: 40px; padding-top: 18px; border-top: 1px solid var(--border-light);">
+        <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 26px; color: var(--ink);">{{ productCount }}</span><span style="font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted);">Kreationen</span></div>
+        <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 26px; color: var(--ink);">{{ since }}</span><span style="font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted);">Dabei seit</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Products ── -->
+  <section style="max-width: 1440px; margin: 0 auto; padding: 72px 64px 96px;">
+    <h2 style="margin: 0 0 40px; font-family: var(--font-display); font-weight: 700; font-size: 30px; line-height: 1.15; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink);">Kreationen von {{ name }}</h2>
+    <sc-if value="{{ hasProducts }}" hint-placeholder-val="{{ true }}">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="4">
+          <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.ProductCard" image="{{ p.img }}" category="{{ p.catUpper }}" title="{{ p.title }}" designer="{{ name }}" price="{{ p.priceLabel }}" onClick="{{ p.open }}" hint-size="100%,330px"></x-import>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ noProducts }}" hint-placeholder-val="{{ false }}">
+      <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 16px; color: var(--medium);">Noch keine Kreationen veröffentlicht.</p>
+    </sc-if>
+  </section>
+
+  <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Footer" hint-size="100%,560px"></x-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024}}">
+class Component extends DCLogic {
+  state = { data: null, authed: false };
+
+  componentDidMount() {
+    try { this.setState({ authed: localStorage.getItem("rdm_authed") === "1" }); } catch (e) {}
+    let id = "";
+    try {
+      const params = new URLSearchParams(location.search);
+      id = params.get("id") || sessionStorage.getItem("rdm_designer") || "";
+    } catch (e) {}
+    import("./shop-data.js").then((mod) => {
+      const data = (id ? mod.getDesigner(id) : null) || mod.getDesigner(mod.DESIGNERS[0].id);
+      this.setState({ data });
+    }).catch(() => {});
+  }
+
+  openProduct = (pid) => {
+    try { sessionStorage.setItem("rdm_product", pid); } catch (e) {}
+    try { location.href = "produkt.dc.html?id=" + encodeURIComponent(pid); } catch (e) {}
+  };
+
+  renderVals() {
+    const d = this.state.data;
+    if (!d) return { name: "Lädt …", materials: [], products: [], hasProducts: false, noProducts: false };
+    return {
+      name: d.name,
+      location: d.location,
+      since: d.since,
+      bio: d.bio,
+      photo: d.photo,
+      cover: d.cover,
+      materials: d.materials,
+      productCount: d.products.length,
+      hasProducts: d.products.length > 0,
+      noProducts: d.products.length === 0,
+      products: d.products.map((p) => ({
+        img: p.img, title: p.title, catUpper: p.cat.toUpperCase(),
+        priceLabel: "CHF " + p.price, open: () => this.openProduct(p.id),
+      })),
+      contact: () => {
+        if (this.state.authed) { try { location.href = "dashboard.dc.html"; } catch (_) {} }
+        else { try { window.dispatchEvent(new CustomEvent("rdm-open-login")); } catch (_) {} }
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

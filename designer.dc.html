@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/base.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/styles.css">
+  <script src="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #fff; }
+    * { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
+    .sc-placeholder { border-color: transparent !important; background: transparent !important; box-shadow: none !important; }
+    .rdm-srch::placeholder { color: var(--muted); opacity: 1; }
+    .rdm-dgrid a > div:last-child > span:last-child { color: var(--ink) !important; }
+  </style>
+</helmet>
+<div style="background: var(--white); min-height: 100vh; padding-top: var(--rdm-header-h, 104px);">
+
+  <dc-import name="Header" active="designers" hint-size="100%,104px"></dc-import>
+
+  <section style="max-width: 1440px; margin: 0 auto; padding: 64px 64px 96px;">
+
+    <!-- intro -->
+    <div style="display: flex; flex-direction: column; gap: 12px; max-width: 640px;">
+      <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Community</span>
+      <h1 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 48px; line-height: 1.04; letter-spacing: -0.3px; text-transform: uppercase; color: var(--ink);">Die Köpfe hinter den Stücken</h1>
+      <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 17px; line-height: 1.7; color: var(--medium);">Verifizierte Upcycling-Designer:innen aus der ganzen Schweiz. Lerne sie kennen — und nimm direkt Kontakt auf.</p>
+    </div>
+
+    <!-- search -->
+    <div style="position: relative; max-width: 440px; margin-top: 40px;">
+      <span style="position: absolute; left: 16px; top: 0; bottom: 0; display: flex; align-items: center; color: var(--muted);">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+      </span>
+      <input value="{{ q }}" onChange="{{ onQ }}" class="rdm-srch" placeholder="Name, Ort oder Material suchen …" style="width: 100%; padding: 13px 16px 13px 44px; border: 1px solid var(--border-light); border-radius: 2px; outline: none; font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); background: var(--white);">
+    </div>
+
+    <!-- material filter + count -->
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 24px;">
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin-right: 4px;">Material</span>
+        <sc-for list="{{ matChips }}" as="c" hint-placeholder-count="6">
+          <sc-if value="{{ c.active }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ c.onClick }}" style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 16px; border-radius: 2px; cursor: pointer; border: 1px solid var(--ink); background: var(--ink); color: var(--white); white-space: nowrap;">{{ c.label }}</button>
+          </sc-if>
+          <sc-if value="{{ c.inactive }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ c.onClick }}" style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 16px; border-radius: 2px; cursor: pointer; border: 1px solid var(--border-light); background: var(--white); color: var(--medium); white-space: nowrap;" style-hover="border-color: var(--ink); color: var(--ink);">{{ c.label }}</button>
+          </sc-if>
+        </sc-for>
+      </div>
+      <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">{{ countLabel }}</span>
+    </div>
+
+    <!-- grid -->
+    <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
+      <div class="rdm-dgrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px;">
+        <sc-for list="{{ list }}" as="d" hint-placeholder-count="8">
+          <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.DesignerCard" image="{{ d.photo }}" name="{{ d.name }}" discipline="{{ d.discipline }}" location="{{ d.locationLabel }}" onClick="{{ d.open }}" hint-size="100%,420px"></x-import>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+      <p style="margin-top: 48px; font-family: var(--font-body); font-weight: 300; font-size: 16px; color: var(--medium);">Keine Designer:innen gefunden. Passe Suche oder Material an.</p>
+    </sc-if>
+  </section>
+
+  <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Footer" hint-size="100%,560px"></x-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024}}">
+class Component extends DCLogic {
+  state = { q: "", mat: "", all: [], loaded: false };
+
+  componentDidMount() {
+    import("./shop-data.js").then((mod) => {
+      this.setState({ all: mod.DESIGNERS, loaded: true });
+    }).catch(() => this.setState({ loaded: true }));
+  }
+
+  openProfile = (id) => {
+    try { sessionStorage.setItem("rdm_designer", id); } catch (e) {}
+    try { location.href = "designer-profil.dc.html?id=" + encodeURIComponent(id); } catch (e) {}
+  };
+
+  renderVals() {
+    const all = this.state.all;
+    const materials = Array.from(new Set(all.flatMap((x) => x.materials))).sort();
+    const { q, mat } = this.state;
+    const ql = q.trim().toLowerCase();
+    const list = all.filter((dz) => {
+      const okMat = !mat || dz.materials.includes(mat);
+      const okQ = !ql || dz.name.toLowerCase().includes(ql) || dz.location.toLowerCase().includes(ql) || dz.materials.some((m) => m.toLowerCase().includes(ql));
+      return okMat && okQ;
+    });
+
+    const openProfile = (e) => { if (e && e.preventDefault) e.preventDefault(); };
+
+    return {
+      q: q,
+      onQ: (e) => this.setState({ q: e.target.value }),
+      matChips: [{ label: "Alle", value: "" }, ...materials.map((m) => ({ label: m, value: m }))].map((c) => ({
+        label: c.label,
+        active: mat === c.value,
+        inactive: mat !== c.value,
+        onClick: () => this.setState({ mat: mat === c.value ? "" : c.value }),
+      })),
+      countLabel: list.length + " Designer:innen",
+      list: list.map((d) => ({
+        photo: d.photo, name: d.name,
+        discipline: d.materials.slice(0, 2).join(" & "),
+        locationLabel: d.location,
+        open: () => this.openProfile(d.id),
+      })),
+      hasItems: !this.state.loaded || list.length > 0,
+      isEmpty: this.state.loaded && list.length === 0,
+      openProfile: this.openProfile,
+    };
+  }
+}
+</script>
+</body>
+</html>

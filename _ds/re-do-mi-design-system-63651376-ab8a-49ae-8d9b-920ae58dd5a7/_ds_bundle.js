@@ -1,8 +1,8 @@
-/* @ds-bundle: {"format":3,"namespace":"ReDoMeDesignSystem_636513","components":[{"name":"Logo","sourcePath":"components/brand/Logo.jsx"},{"name":"BriefCard","sourcePath":"components/cards/BriefCard.jsx"},{"name":"CategoryTile","sourcePath":"components/cards/CategoryTile.jsx"},{"name":"DesignerCard","sourcePath":"components/cards/DesignerCard.jsx"},{"name":"ProductCard","sourcePath":"components/cards/ProductCard.jsx"},{"name":"Testimonial","sourcePath":"components/cards/Testimonial.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"EyebrowLabel","sourcePath":"components/core/EyebrowLabel.jsx"},{"name":"ImageFrame","sourcePath":"components/core/ImageFrame.jsx"},{"name":"Stat","sourcePath":"components/core/Stat.jsx"},{"name":"StatusPill","sourcePath":"components/core/StatusPill.jsx"},{"name":"Tag","sourcePath":"components/core/Tag.jsx"},{"name":"LoginGateModal","sourcePath":"components/feedback/LoginGateModal.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"NavDesktop","sourcePath":"components/navigation/NavDesktop.jsx"}],"sourceHashes":{"components/brand/Logo.jsx":"e49ec40a10b6","components/cards/BriefCard.jsx":"65d1353ecf26","components/cards/CategoryTile.jsx":"17149658f299","components/cards/DesignerCard.jsx":"81663e9f8e3c","components/cards/ProductCard.jsx":"4fb9d1162413","components/cards/Testimonial.jsx":"af350382566c","components/core/Button.jsx":"b1d9c5c93ff1","components/core/EyebrowLabel.jsx":"9cd11f08278c","components/core/ImageFrame.jsx":"9a925205d68c","components/core/Stat.jsx":"035358c9f6a7","components/core/StatusPill.jsx":"7d11fd27e8aa","components/core/Tag.jsx":"eccb3a853323","components/feedback/LoginGateModal.jsx":"2643bd2ace86","components/forms/Input.jsx":"40b670b9732a","components/navigation/Footer.jsx":"5c7e6f74afbd","components/navigation/NavDesktop.jsx":"644ccf499646","ui_kits/marketplace/BoardScreen.jsx":"6c4a324e43e9","ui_kits/marketplace/DashboardScreen.jsx":"93013492b735","ui_kits/marketplace/HomeScreen.jsx":"1a3bdc437c9e","ui_kits/marketplace/data.js":"65bcb56bbdf7"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":3,"namespace":"ReDoMiDesignSystem_636513","components":[{"name":"Logo","sourcePath":"components/brand/Logo.jsx"},{"name":"BriefCard","sourcePath":"components/cards/BriefCard.jsx"},{"name":"CategoryTile","sourcePath":"components/cards/CategoryTile.jsx"},{"name":"DesignerCard","sourcePath":"components/cards/DesignerCard.jsx"},{"name":"ProductCard","sourcePath":"components/cards/ProductCard.jsx"},{"name":"Testimonial","sourcePath":"components/cards/Testimonial.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"EyebrowLabel","sourcePath":"components/core/EyebrowLabel.jsx"},{"name":"ImageFrame","sourcePath":"components/core/ImageFrame.jsx"},{"name":"Stat","sourcePath":"components/core/Stat.jsx"},{"name":"StatusPill","sourcePath":"components/core/StatusPill.jsx"},{"name":"Tag","sourcePath":"components/core/Tag.jsx"},{"name":"LoginGateModal","sourcePath":"components/feedback/LoginGateModal.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"NavDesktop","sourcePath":"components/navigation/NavDesktop.jsx"}],"sourceHashes":{"components/brand/Logo.jsx":"e49ec40a10b6","components/cards/BriefCard.jsx":"65d1353ecf26","components/cards/CategoryTile.jsx":"17149658f299","components/cards/DesignerCard.jsx":"81663e9f8e3c","components/cards/ProductCard.jsx":"4fb9d1162413","components/cards/Testimonial.jsx":"af350382566c","components/core/Button.jsx":"b1d9c5c93ff1","components/core/EyebrowLabel.jsx":"9cd11f08278c","components/core/ImageFrame.jsx":"9a925205d68c","components/core/Stat.jsx":"035358c9f6a7","components/core/StatusPill.jsx":"7d11fd27e8aa","components/core/Tag.jsx":"eccb3a853323","components/feedback/LoginGateModal.jsx":"2643bd2ace86","components/forms/Input.jsx":"40b670b9732a","components/navigation/Footer.jsx":"5c7e6f74afbd","components/navigation/NavDesktop.jsx":"644ccf499646","ui_kits/marketplace/BoardScreen.jsx":"6c4a324e43e9","ui_kits/marketplace/DashboardScreen.jsx":"93013492b735","ui_kits/marketplace/HomeScreen.jsx":"1a3bdc437c9e","ui_kits/marketplace/data.js":"65bcb56bbdf7"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
-const __ds_ns = (window.ReDoMeDesignSystem_636513 = window.ReDoMeDesignSystem_636513 || {});
+const __ds_ns = (window.ReDoMiDesignSystem_636513 = window.ReDoMiDesignSystem_636513 || {});
 
 const __ds_scope = {};
 
@@ -12,8 +12,8 @@ const __ds_scope = {};
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /**
- * re:do:me wordmark. A vertical column of green letter-tiles spelling
- * R·E·D·O·M·E next to the "re:do:me" Playfair wordmark.
+ * re:do:mi wordmark. A vertical column of green letter-tiles spelling
+ * R·E·D·O·M·E next to the "re:do:mi" Playfair wordmark.
  */
 function Logo({
   showWordmark = true,
@@ -63,7 +63,7 @@ function Logo({
       color: wordColor,
       letterSpacing: "0.01em"
     }
-  }, "re:do:me"));
+  }, "re:do:mi"));
 }
 Object.assign(__ds_scope, { Logo });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/brand/Logo.jsx", error: String((e && e.message) || e) }); }
@@ -895,7 +895,7 @@ function Footer({
       fontSize: "var(--text-caption)",
       color: "var(--text-on-dark-muted)"
     }
-  }, "\xA9 2026 re:do:me \xB7 Z\xFCrich, Schweiz"), /*#__PURE__*/React.createElement("div", {
+  }, "\xA9 2026 re:do:mi \xB7 Z\xFCrich, Schweiz"), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       gap: 16
@@ -1062,12 +1062,12 @@ Object.assign(__ds_scope, { NavDesktop });
 
 // ui_kits/marketplace/BoardScreen.jsx
 try { (() => {
-// re:do:me — Marketplace UI kit · Anschlagbrett (pinboard) screen
+// re:do:mi — Marketplace UI kit · Anschlagbrett (pinboard) screen
 function BoardScreen({
   go,
   openLogin
 }) {
-  const RDM = window.ReDoMeDesignSystem_636513;
+  const RDM = window.ReDoMiDesignSystem_636513;
   const {
     NavDesktop,
     Footer,
@@ -1199,11 +1199,11 @@ window.BoardScreen = BoardScreen;
 
 // ui_kits/marketplace/DashboardScreen.jsx
 try { (() => {
-// re:do:me — Marketplace UI kit · Project dashboard (chat) screen
+// re:do:mi — Marketplace UI kit · Project dashboard (chat) screen
 function DashboardScreen({
   go
 }) {
-  const RDM = window.ReDoMeDesignSystem_636513;
+  const RDM = window.ReDoMiDesignSystem_636513;
   const {
     NavDesktop,
     StatusPill,
@@ -1419,8 +1419,8 @@ window.DashboardScreen = DashboardScreen;
 // ui_kits/marketplace/HomeScreen.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-// re:do:me — Marketplace UI kit · Homepage screen
-const RDM = window.ReDoMeDesignSystem_636513;
+// re:do:mi — Marketplace UI kit · Homepage screen
+const RDM = window.ReDoMiDesignSystem_636513;
 function Section({
   eyebrow,
   title,
@@ -1533,7 +1533,7 @@ function HomeScreen({
       color: "var(--text-muted)",
       maxWidth: 460
     }
-  }, "re:do:me verbindet Kund:innen mit verifizierten Schweizer Upcycling-Designer:innen \u2014 als kuratierte Plattform mit pers\xF6nlichem Vermittler-Anspruch."), /*#__PURE__*/React.createElement("div", {
+  }, "re:do:mi verbindet Kund:innen mit verifizierten Schweizer Upcycling-Designer:innen \u2014 als kuratierte Plattform mit pers\xF6nlichem Vermittler-Anspruch."), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       gap: 16,
@@ -1743,7 +1743,7 @@ window.HomeScreen = HomeScreen;
 
 // ui_kits/marketplace/data.js
 try { (() => {
-// re:do:me — Marketplace UI kit · shared sample data
+// re:do:mi — Marketplace UI kit · shared sample data
 window.RDM_DATA = {
   products: [{
     category: "Möbel",
@@ -1817,7 +1817,7 @@ window.RDM_DATA = {
     name: "Bianca R.",
     role: "Privatkundin, Bern"
   }, {
-    quote: "«re:do:me bringt mir genau die richtigen Aufträge.»",
+    quote: "«re:do:mi bringt mir genau die richtigen Aufträge.»",
     name: "Lena B.",
     role: "Designerin, Basel"
   }],

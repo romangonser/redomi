@@ -1,4 +1,4 @@
-/* re:do:me Design System — global entry point.
+/* re:do:mi Design System — global entry point.
    Consumers link this one file. Keep it as @import lines only. */
 @import url("tokens/fonts.css");
 @import url("tokens/colors.css");

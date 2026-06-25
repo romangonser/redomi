@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/base.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/styles.css">
+  <script src="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #fff; }
+    * { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
+    .sc-placeholder { border-color: transparent !important; background: transparent !important; box-shadow: none !important; }
+    .rdm-cf::placeholder { color: var(--muted); opacity: 1; }
+  </style>
+</helmet>
+<div style="background: var(--white); min-height: 100vh; padding-top: var(--rdm-header-h, 104px);">
+
+  <dc-import name="Header" active="board" hint-size="100%,104px"></dc-import>
+
+  <section style="max-width: 1440px; margin: 0 auto; padding: 64px 64px 96px;">
+
+    <!-- header row -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap;">
+      <div style="display: flex; flex-direction: column; gap: 10px; max-width: 620px;">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Anschlagbrett</span>
+        <h1 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 44px; line-height: 1.05; letter-spacing: -0.3px; text-transform: uppercase; color: var(--ink);">Stücke, die ein zweites Leben suchen</h1>
+        <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.7; color: var(--medium);">Offene Ausschreibungen aus der Community. Melde dich, um Details zu sehen, Kontakt aufzunehmen — oder schreibe dein eigenes Stück aus.</p>
+      </div>
+      <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Button" variant="primary" onClick="{{ create }}" hint-size="auto,48px">Ausschreibung erstellen →</x-import>
+    </div>
+
+    <!-- filter + count -->
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 40px;">
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <sc-for list="{{ chips }}" as="c" hint-placeholder-count="5">
+          <sc-if value="{{ c.active }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ c.onClick }}" style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 16px; border-radius: 2px; cursor: pointer; border: 1px solid var(--ink); background: var(--ink); color: var(--white); white-space: nowrap;">{{ c.label }}</button>
+          </sc-if>
+          <sc-if value="{{ c.inactive }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ c.onClick }}" style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 16px; border-radius: 2px; cursor: pointer; border: 1px solid var(--border-light); background: var(--white); color: var(--medium); white-space: nowrap;" style-hover="border-color: var(--ink); color: var(--ink);">{{ c.label }}</button>
+          </sc-if>
+        </sc-for>
+      </div>
+      <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">{{ countLabel }}</span>
+    </div>
+
+    <!-- list -->
+    <div style="margin-top: 32px;">
+      <div style="display: grid; grid-template-columns: 1fr 220px 150px 150px; gap: 32px; align-items: end; padding: 0 0 14px; border-bottom: 1px solid var(--border-light);">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Titel</span>
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Sparte</span>
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Region</span>
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); text-align: right;">Veröffentlicht</span>
+      </div>
+      <sc-for list="{{ list }}" as="b" hint-placeholder-count="6">
+        <a href="#" onClick="{{ b.onClick }}" style="display: grid; grid-template-columns: 1fr 220px 150px 150px; gap: 32px; align-items: start; padding: 22px 16px; margin: 0 -16px; text-decoration: none; color: inherit; border-bottom: 1px solid var(--border-light); box-shadow: inset 3px 0 0 transparent; transition: background .16s ease, box-shadow .16s ease;" style-hover="background: var(--surface-alt); box-shadow: inset 3px 0 0 var(--brand-yellow);">
+          <div style="display: flex; flex-direction: column; gap: 5px;">
+            <span style="font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted);">Suche</span>
+            <span style="font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: 0.2px; line-height: 1.25; color: var(--ink);">{{ b.title }}</span>
+            <span style="font-family: var(--font-body); font-weight: 300; font-size: 13px; line-height: 1.55; color: var(--muted); max-width: 520px;">{{ b.desc }}</span>
+          </div>
+          <span style="font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.5; color: var(--medium);">{{ b.tag }}</span>
+          <span style="font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.5; color: var(--medium);">{{ b.ort }}</span>
+          <span style="font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.4px; line-height: 1.5; color: var(--ink); text-align: right;">{{ b.date }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Footer" hint-size="100%,560px"></x-import>
+
+  <!-- ════════ CREATE OVERLAY ════════ -->
+  <sc-if value="{{ createOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeCreate }}" style="position: fixed; inset: 0; z-index: 90; background: rgba(26,26,26,0.45); display: flex; align-items: flex-start; justify-content: center; padding: 48px 24px; overflow-y: auto;">
+      <div onClick="{{ stop }}" style="width: 100%; max-width: 720px; background: var(--white); border-radius: 4px; border: 1px solid var(--border-light); padding: 48px;">
+
+        <sc-if value="{{ createForm }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;">
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Anschlagbrett</span>
+                <h2 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 34px; line-height: 1.05; letter-spacing: -0.3px; text-transform: uppercase; color: var(--ink);">Neues Projekt ausschreiben</h2>
+                <p style="margin: 0; font-family: var(--font-body); font-style: italic; font-weight: 300; font-size: 16px; color: var(--medium);">Beschreibe dein Vorhaben — Designer:innen melden sich direkt bei dir.</p>
+              </div>
+              <button aria-label="Schliessen" onClick="{{ closeCreate }}" style="background: none; border: none; font-size: 28px; line-height: 0.7; color: var(--muted); cursor: pointer; margin: -4px -4px 0 0;">×</button>
+            </div>
+
+            <form onSubmit="{{ submitCreate }}" style="display: flex; flex-direction: column; gap: 22px; margin-top: 32px;">
+              <label style="display: flex; flex-direction: column; gap: 8px;">
+                <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--medium);">Titel</span>
+                <input value="{{ fTitle }}" onChange="{{ onTitle }}" required class="rdm-cf" placeholder="z.B. Sofa mit emotionalem Wert — wer kann es neu beziehen?" style="width: 100%; padding: 14px 15px; border: 1px solid var(--border-light); border-radius: 2px; outline: none; font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); background: var(--white);">
+              </label>
+
+              <label style="display: flex; flex-direction: column; gap: 8px;">
+                <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--medium);">Beschreibung</span>
+                <textarea value="{{ fDesc }}" onChange="{{ onDesc }}" required rows="5" class="rdm-cf" placeholder="Erzähl die Geschichte des Stücks und was gemacht werden soll …" style="width: 100%; padding: 14px 15px; border: 1px solid var(--border-light); border-radius: 2px; outline: none; font-family: var(--font-body); font-weight: 300; font-size: 15px; line-height: 1.6; color: var(--ink); background: var(--white); resize: vertical;"></textarea>
+              </label>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px;">
+                <label style="display: flex; flex-direction: column; gap: 8px;">
+                  <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--medium);">Kategorie</span>
+                  <select value="{{ fCat }}" onChange="{{ onCat }}" class="rdm-cf" style="width: 100%; padding: 14px 15px; border: 1px solid var(--border-light); border-radius: 2px; outline: none; font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); background: var(--white); cursor: pointer;">
+                    <sc-for list="{{ catOptions }}" as="o" hint-placeholder-count="5">
+                      <option value="{{ o }}">{{ o }}</option>
+                    </sc-for>
+                  </select>
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 8px;">
+                  <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--medium);">Stadt</span>
+                  <input value="{{ fCity }}" onChange="{{ onCity }}" required class="rdm-cf" placeholder="z.B. Zürich" style="width: 100%; padding: 14px 15px; border: 1px solid var(--border-light); border-radius: 2px; outline: none; font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); background: var(--white);">
+                </label>
+              </div>
+
+              <label style="display: flex; flex-direction: column; gap: 8px;">
+                <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--medium);">Budget (optional)</span>
+                <input value="{{ fBudget }}" onChange="{{ onBudget }}" class="rdm-cf" placeholder="z.B. CHF 800 – 1'500" style="width: 100%; padding: 14px 15px; border: 1px solid var(--border-light); border-radius: 2px; outline: none; font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); background: var(--white);">
+              </label>
+
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--medium);">Bilder hochladen</span>
+                <button type="button" onClick="{{ pickFiles }}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 36px; border: 1.5px dashed var(--border-light); border-radius: 4px; background: var(--surface-alt); cursor: pointer;" style-hover="border-color: var(--ink);">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--medium)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                  <span style="font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--ink);">{{ fileLabel }}</span>
+                  <span style="font-family: var(--font-body); font-style: italic; font-weight: 300; font-size: 13px; color: var(--muted);">oder klicken zum Auswählen · max. 5 Bilder</span>
+                </button>
+                <input ref="{{ fileRef }}" onChange="{{ onFiles }}" type="file" accept="image/*" multiple style="display: none;">
+              </div>
+
+              <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer;">
+                <input type="checkbox" checked="{{ fConsent }}" onChange="{{ onConsent }}" style="width: 18px; height: 18px; margin-top: 1px; accent-color: #1a1a1a; cursor: pointer; flex: none;">
+                <span style="font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.5; color: var(--ink);">Ich stimme zu, dass mein Projekt öffentlich sichtbar ist und Designer:innen mich kontaktieren dürfen.</span>
+              </label>
+
+              <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 4px;">
+                <button type="submit" style="background: var(--brand-yellow); color: var(--ink); border: none; border-radius: 2px; padding: 16px 34px; font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 1.4px; text-transform: uppercase; cursor: pointer;" style-hover="background: #e0b92e;">Projekt veröffentlichen</button>
+                <button type="button" onClick="{{ closeCreate }}" style="background: transparent; color: var(--ink); border: 1px solid var(--ink); border-radius: 2px; padding: 15px 33px; font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 1.4px; text-transform: uppercase; cursor: pointer;" style-hover="background: var(--ink); color: var(--white);">Abbrechen</button>
+              </div>
+            </form>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ createDone }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start; padding: 12px 0;">
+            <span style="font-family: var(--font-serif); font-style: italic; font-size: 38px; color: var(--brand-yellow);">Live!</span>
+            <h2 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 26px; letter-spacing: 0.3px; text-transform: uppercase; color: var(--ink);">Deine Ausschreibung ist online</h2>
+            <p style="margin: 0; max-width: 460px; font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.7; color: var(--medium);">Sie steht jetzt zuoberst auf dem Anschlagbrett. Interessierte Designer:innen können sich ab sofort bei dir melden.</p>
+            <button onClick="{{ closeCreate }}" style="margin-top: 8px; background: var(--brand-yellow); color: var(--ink); border: none; border-radius: 2px; padding: 15px 32px; font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 1.4px; text-transform: uppercase; cursor: pointer;" style-hover="background: #e0b92e;">Zum Anschlagbrett →</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024}}">
+class Component extends DCLogic {
+  fileRef = React.createRef();
+  state = {
+    cat: "Alle", authed: false, briefs: [],
+    createOpen: false, createDone: false,
+    fTitle: "", fDesc: "", fCat: "Möbel", fCity: "", fBudget: "", fConsent: true, fFiles: 0,
+  };
+
+  componentDidMount() {
+    try { this.setState({ authed: localStorage.getItem("rdm_authed") === "1" }); } catch (e) {}
+    import("./shop-data.js").then((mod) => this.setState({ briefs: mod.BRIEFS })).catch(() => {});
+  }
+
+  openBrief = (id) => (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (this.state.authed) {
+      try { sessionStorage.setItem("rdm_brief", id); } catch (_) {}
+      try { location.href = "ausschreibung.dc.html?id=" + encodeURIComponent(id); } catch (_) {}
+    } else {
+      try { sessionStorage.setItem("rdm_after_login", "ausschreibung.dc.html?id=" + encodeURIComponent(id)); } catch (_) {}
+      try { sessionStorage.setItem("rdm_brief", id); } catch (_) {}
+      try { window.dispatchEvent(new CustomEvent("rdm-open-login")); } catch (_) {}
+    }
+  };
+
+  create = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (this.state.authed) {
+      this.setState({ createOpen: true, createDone: false });
+    } else {
+      try { window.dispatchEvent(new CustomEvent("rdm-open-login")); } catch (_) {}
+    }
+  };
+
+  closeCreate = () => this.setState({ createOpen: false, createDone: false });
+
+  submitCreate = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const s = this.state;
+    if (!s.fTitle.trim() || !s.fDesc.trim() || !s.fCity.trim() || !s.fConsent) return;
+    const slug = s.fTitle.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40) || "projekt";
+    const now = new Date();
+    const pad = (n) => (n < 10 ? "0" + n : "" + n);
+    const date = pad(now.getDate()) + "." + pad(now.getMonth() + 1) + "." + now.getFullYear();
+    const brief = {
+      id: slug + "-" + now.getTime(),
+      title: s.fTitle.trim(), tag: s.fCat, ort: s.fCity.trim(), date: date,
+      short: s.fDesc.trim(), long: s.fDesc.trim(),
+      poster: "Bianca R.", posterRole: "Verifizierte Kundin",
+      budget: s.fBudget.trim() || "Auf Anfrage", timeline: "Nach Absprache", responses: 0,
+      image: "https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?auto=format&fit=crop&w=1100&q=72",
+      needs: [],
+    };
+    this.setState((st) => ({
+      briefs: [brief, ...st.briefs], cat: "Alle", createDone: true,
+      fTitle: "", fDesc: "", fCat: "Möbel", fCity: "", fBudget: "", fConsent: true, fFiles: 0,
+    }));
+  };
+
+  renderVals() {
+    const cats = ["Alle", "Möbel", "Leuchten", "Textilien", "Objekte"];
+    const cat = this.state.cat;
+    const list = cat === "Alle" ? this.state.briefs : this.state.briefs.filter((b) => b.tag === cat);
+    const s = this.state;
+    const valid = s.fTitle.trim() && s.fDesc.trim() && s.fCity.trim() && s.fConsent;
+
+    return {
+      chips: cats.map((c) => ({
+        label: c, active: cat === c, inactive: cat !== c,
+        onClick: () => this.setState({ cat: c }),
+      })),
+      countLabel: list.length + " offene Inserate",
+      list: list.map((b) => ({ title: b.title, tag: b.tag, ort: b.ort, date: b.date, desc: b.short, onClick: this.openBrief(b.id) })),
+      create: this.create,
+      stop: (e) => { if (e && e.stopPropagation) e.stopPropagation(); },
+      createOpen: this.state.createOpen,
+      createForm: !this.state.createDone,
+      createDone: this.state.createDone,
+      closeCreate: this.closeCreate,
+      submitCreate: this.submitCreate,
+      catOptions: ["Möbel", "Leuchten", "Textilien", "Objekte", "Schmuck", "Kunst"],
+      fTitle: s.fTitle, fDesc: s.fDesc, fCat: s.fCat, fCity: s.fCity, fBudget: s.fBudget, fConsent: s.fConsent,
+      onTitle: (e) => this.setState({ fTitle: e.target.value }),
+      onDesc: (e) => this.setState({ fDesc: e.target.value }),
+      onCat: (e) => this.setState({ fCat: e.target.value }),
+      onCity: (e) => this.setState({ fCity: e.target.value }),
+      onBudget: (e) => this.setState({ fBudget: e.target.value }),
+      onConsent: (e) => this.setState({ fConsent: e.target.checked }),
+      fileRef: this.fileRef,
+      pickFiles: () => { if (this.fileRef.current) this.fileRef.current.click(); },
+      onFiles: (e) => this.setState({ fFiles: (e.target.files ? e.target.files.length : 0) }),
+      fileLabel: s.fFiles > 0 ? (s.fFiles + (s.fFiles === 1 ? " Bild ausgewählt" : " Bilder ausgewählt")) : "Dateien hier ablegen",
+      submitDisabled: !valid,
+      submitBg: valid ? "var(--brand-yellow)" : "var(--border-light)",
+      submitCursor: valid ? "pointer" : "not-allowed",
+    };
+  }
+}
+</script>
+</body>
+</html>

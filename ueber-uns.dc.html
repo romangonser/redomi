@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/base.css">
+  <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/styles.css">
+  <script src="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #fff; }
+    * { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
+    .sc-placeholder { border-color: transparent !important; background: transparent !important; box-shadow: none !important; }
+    .rdm-in::placeholder, .rdm-ta::placeholder { color: var(--muted); opacity: 1; }
+  </style>
+</helmet>
+<div style="background: var(--white); min-height: 100vh; padding-top: var(--rdm-header-h, 104px);">
+
+  <dc-import name="Header" active="about" hint-size="100%,104px"></dc-import>
+
+  <!-- ════════ HERO ════════ -->
+  <section style="max-width: 1440px; margin: 0 auto; padding: 88px 64px 64px;">
+    <div style="display: flex; flex-direction: column; gap: 30px;">
+      <h1 class="rdm-hero-title"><span>Wir vermitteln</span><span class="rdm-hero-title__serif">zwischen Idee</span><span class="rdm-hero-title__accent">und Werkstatt.</span></h1>
+      <p style="margin: 0; max-width: 920px; font-family: var(--font-body); font-weight: 300; font-size: 17px; line-height: 1.7; color: var(--medium);">Re-Do-Mi ist der Vermittler innerhalb der Upcycle-Szene — eine Plattform, auf der Gestalter:innen ihre Kreationen zeigen und Kund:innen direkt mit ihnen in Kontakt treten. Kein Zwischenhandel, kein Massenlager. Nur Menschen, Material mit Geschichte und Handwerk, das bleibt.</p>
+      <div style="display: flex; gap: 56px; padding-top: 32px; border-top: 1px solid var(--border-light); flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 6px;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 40px; letter-spacing: 0.5px; line-height: 1; color: var(--brand-yellow);">140+</span><span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Designer:innen</span></div>
+        <div style="display: flex; flex-direction: column; gap: 6px;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 40px; letter-spacing: 0.5px; line-height: 1; color: var(--brand-yellow);">800+</span><span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Kreationen</span></div>
+        <div style="display: flex; flex-direction: column; gap: 6px;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 40px; letter-spacing: 0.5px; line-height: 1; color: var(--brand-yellow);">100%</span><span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Schweiz</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div style="width: 100%; height: 460px; background: url(https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1100&q=70) center / cover no-repeat;"></div>
+
+  <!-- ════════ WERTE ════════ -->
+  <section style="background: var(--surface-alt);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 96px 64px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Werte</span>
+        <h2 style="margin: 0; max-width: 620px; font-family: var(--font-display); font-weight: 700; font-size: 36px; line-height: 1.15; letter-spacing: 1.44px; text-transform: uppercase; color: var(--ink);">Warum es uns gibt</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px;">
+        <sc-for list="{{ values }}" as="v" hint-placeholder-count="4">
+          <div style="background: var(--white); border: 1px solid var(--border-light); border-radius: 4px; padding: 28px; display: flex; flex-direction: column; gap: 12px;">
+            <span style="font-family: var(--font-display); font-weight: 700; font-size: 40px; letter-spacing: 0.5px; color: var(--brand-yellow); line-height: 1;">{{ v.n }}</span>
+            <h3 style="margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 17px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--ink);">{{ v.t }}</h3>
+            <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 15px; line-height: 1.65; color: var(--medium);">{{ v.d }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ KREISLAUF (dunkel) ════════ -->
+  <section style="background: var(--ink);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 80px 64px; display: grid; grid-template-columns: 1fr 0.62fr; gap: 64px; align-items: center;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--brand-yellow);">Kreislaufwirtschaft</span>
+        <h2 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 34px; line-height: 1.15; letter-spacing: 1.2px; text-transform: uppercase; color: var(--white);">Aus Resten wird Relevanz</h2>
+        <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 18px; line-height: 1.7; color: rgba(255,255,255,0.78);">Jedes Stück, das ein zweites Leben bekommt, ist Material, das nicht neu produziert und nicht entsorgt werden muss. Wir glauben, dass Kreislaufwirtschaft kein Verzicht ist, sondern eine reichere Form von Design — mit Herkunft, Charakter und Verantwortung.</p>
+      </div>
+      <div style="height: 340px; border-radius: 4px; background: url(https://images.unsplash.com/photo-1513519245088-0e12902e35ca?auto=format&fit=crop&w=1100&q=70) center / cover no-repeat;"></div>
+    </div>
+  </section>
+
+  <!-- ════════ SO FUNKTIONIERT'S ════════ -->
+  <section style="background: var(--white);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 96px 64px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">So funktioniert's</span>
+        <h2 style="margin: 0; max-width: 620px; font-family: var(--font-display); font-weight: 700; font-size: 36px; line-height: 1.15; letter-spacing: 1.44px; text-transform: uppercase; color: var(--ink);">In vier Schritten</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px;">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 14px; padding-top: 24px; border-top: 2px solid var(--ink);">
+            <span style="font-family: var(--font-display); font-weight: 700; font-size: 40px; letter-spacing: 0.5px; color: var(--brand-yellow); line-height: 1;">{{ s.n }}</span>
+            <h3 style="margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 19px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--ink);">{{ s.t }}</h3>
+            <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 15px; line-height: 1.65; color: var(--medium);">{{ s.d }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ FÜR DESIGNER:INNEN ════════ -->
+  <section style="background: var(--surface-alt);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 96px 64px; display: grid; grid-template-columns: 0.45fr 0.55fr; gap: 64px; align-items: center;">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Für Designer:innen</span>
+        <h2 style="margin: 0; max-width: 420px; font-family: var(--font-display); font-weight: 700; font-size: 36px; line-height: 1.15; letter-spacing: 1.44px; text-transform: uppercase; color: var(--ink);">Deine Werkstatt, unsere Bühne</h2>
+        <p style="margin: 0; max-width: 460px; font-family: var(--font-body); font-weight: 300; font-size: 17px; line-height: 1.7; color: var(--medium);">Du gestaltest aus dem, was schon da war? Re-Do-Mi bringt dich mit einer Community zusammen, die genau das sucht. Wir kuratieren, du gestaltest — den direkten Draht zu deinen Kund:innen behältst du.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 4px;">
+          <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Button" variant="primary" onClick="{{ becomeDesigner }}" hint-size="auto,48px">Designer:in werden →</x-import>
+          <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Button" variant="ghost" onClick="{{ goDesigners }}" hint-size="auto,48px">Profile ansehen</x-import>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="4">
+          <div style="background: var(--white); border: 1px solid var(--border-light); border-radius: 4px; padding: 22px; display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink);">{{ b.t }}</h3>
+            <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--medium);">{{ b.d }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ PRESSE / PARTNER ════════ -->
+  <section style="background: var(--white);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 96px 64px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Presse</span>
+        <h2 style="margin: 0; max-width: 620px; font-family: var(--font-display); font-weight: 700; font-size: 36px; line-height: 1.15; letter-spacing: 1.44px; text-transform: uppercase; color: var(--ink);">Was über uns gesagt wird</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;">
+        <sc-for list="{{ press }}" as="p" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; gap: 16px; padding: 28px; border: 1px solid var(--border-light); border-radius: 4px;">
+            <span style="font-family: var(--font-serif); font-style: italic; font-size: 44px; color: var(--brand-yellow); line-height: 0.6; height: 22px;">“</span>
+            <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 17px; line-height: 1.6; color: var(--ink);">{{ p.q }}</p>
+            <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">{{ p.src }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; align-items: center; gap: 64px; flex-wrap: wrap; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border-light);">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Partner</span>
+        <div style="display: flex; gap: 56px; align-items: center; flex-wrap: wrap;">
+          <sc-for list="{{ partners }}" as="pn" hint-placeholder-count="5">
+            <span style="font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: 1px; color: var(--muted);">{{ pn }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="width: 100%; height: 380px; background: url(https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1100&q=70) center / cover no-repeat;"></div>
+
+  <!-- ════════ KONTAKT ════════ -->
+  <section style="background: var(--surface-alt);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 96px 64px; display: grid; grid-template-columns: 0.4fr 0.6fr; gap: 64px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 28px;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Kontakt</span>
+          <h2 style="margin: 0; max-width: 320px; font-family: var(--font-display); font-weight: 700; font-size: 36px; line-height: 1.15; letter-spacing: 1.44px; text-transform: uppercase; color: var(--ink);">Sag Hallo</h2>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 22px; margin-top: 4px;">
+          <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted);">Adresse</span><span style="white-space: pre-line; font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.6; color: var(--ink);">Re-Do-Mi GmbH
+Langgasse 42
+8004 Zürich</span></div>
+          <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted);">E-Mail</span><span style="font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.6; color: var(--ink);">hallo@re-do-mi.ch</span></div>
+          <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted);">Telefon</span><span style="font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.6; color: var(--ink);">+41 44 123 45 67</span></div>
+          <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted);">Social</span><span style="font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.6; color: var(--ink);">@redomi.ch · Instagram · LinkedIn</span></div>
+        </div>
+      </div>
+
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="background: var(--white); border: 1px solid var(--border-light); border-radius: 4px; padding: 48px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+          <span style="font-family: var(--font-serif); font-style: italic; font-size: 40px; color: var(--brand-yellow); line-height: 1;">Danke!</span>
+          <p style="margin: 0; max-width: 380px; font-family: var(--font-body); font-weight: 300; font-size: 17px; line-height: 1.6; color: var(--medium);">Deine Nachricht ist bei uns gelandet. Wir melden uns innerhalb von zwei Werktagen.</p>
+          <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Button" variant="ghost" onClick="{{ reset }}" hint-size="auto,46px">Neue Nachricht</x-import>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submit }}" style="background: var(--white); border: 1px solid var(--border-light); border-radius: 4px; padding: 40px; display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="display: flex; flex-direction: column; gap: 6px;"><label style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--medium);">Name</label><input required class="rdm-in" placeholder="Vor- und Nachname" style="width: 100%; padding: 13px 15px; border-radius: 2px; border: 1px solid var(--border-light); background: var(--white); font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); outline: none;"></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;"><label style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--medium);">E-Mail</label><input required type="email" class="rdm-in" placeholder="deine@email.ch" style="width: 100%; padding: 13px 15px; border-radius: 2px; border: 1px solid var(--border-light); background: var(--white); font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); outline: none;"></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><label style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--medium);">Betreff</label><input class="rdm-in" placeholder="Worum geht's?" style="width: 100%; padding: 13px 15px; border-radius: 2px; border: 1px solid var(--border-light); background: var(--white); font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); outline: none;"></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><label style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--medium);">Nachricht</label><textarea required rows="5" class="rdm-ta" placeholder="Erzähl uns, was du auf dem Herzen hast …" style="width: 100%; padding: 13px 15px; border-radius: 2px; border: 1px solid var(--border-light); background: var(--white); font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); outline: none; resize: vertical;"></textarea></div>
+          <button type="submit" style="align-self: flex-start; background: var(--brand-yellow); color: var(--ink); border: none; border-radius: 2px; padding: 15px 32px; font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 1.4px; text-transform: uppercase; cursor: pointer;" style-hover="background: #e0b92e;">Nachricht senden →</button>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+
+  <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Footer" hint-size="100%,560px"></x-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024}}">
+class Component extends DCLogic {
+  state = { sent: false };
+
+  renderVals() {
+    return {
+      values: [
+        { n: "01", t: "Kreislauf statt Wegwerf", d: "Jedes Stück bei Re-Do-Mi entsteht aus Material, das schon da war. Wir verlängern Lebenszyklen, statt neue zu starten." },
+        { n: "02", t: "Menschen vor Plattform", d: "Wir sind Vermittler, nicht Zwischenhändler. Kund:innen und Gestalter:innen treten direkt in Kontakt — wir halten den Raum dafür." },
+        { n: "03", t: "Schweizer Handwerk", d: "Verifizierte Designer:innen aus der ganzen Schweiz. Lokal gefertigt, fair gehandelt, transparent gezeigt." },
+        { n: "04", t: "Geschichten, die bleiben", d: "Hinter jedem Unikat steht eine Herkunft. Wir machen sie sichtbar — vom Restmaterial bis zur Werkstatt." },
+      ],
+      steps: [
+        { n: "01", t: "Entdecken", d: "Stöbere durch Unikate und Profile verifizierter Upcycling-Designer:innen — oder schreibe selbst eine Idee aufs Anschlagbrett." },
+        { n: "02", t: "Verbinden", d: "Nimm direkt Kontakt auf. Besprich Material, Idee und Offerte ohne Umwege im persönlichen Chat." },
+        { n: "03", t: "Entstehen lassen", d: "Begleite dein Stück von der Anzahlung bis zur Fertigstellung — transparent, Schritt für Schritt." },
+        { n: "04", t: "Weitergeben", d: "Bewerte die Zusammenarbeit und gib der Community zurück. Gutes Handwerk verdient eine Bühne." },
+      ],
+      benefits: [
+        { t: "Deine eigene Bühne", d: "Ein kuratiertes Profil, das deine Arbeit und deine Herkunftsgeschichte ins Zentrum stellt." },
+        { t: "Direkter Draht", d: "Anfragen landen ohne Mittelsmann bei dir. Du bestimmst, mit wem du arbeitest." },
+        { t: "Faire Konditionen", d: "Transparente Gebühren, sichere Anzahlungen, keine versteckten Kosten." },
+        { t: "Aufträge auf Abruf", d: "Über das Anschlagbrett finden Kund:innen mit konkreten Ideen direkt zu dir." },
+      ],
+      press: [
+        { q: "Eine Plattform, die Kreislaufwirtschaft nicht predigt, sondern lebt.", src: "Hochparterre" },
+        { q: "Re-Do-Mi gibt dem Schweizer Upcycling-Handwerk endlich ein gemeinsames Schaufenster.", src: "Das Lamm" },
+        { q: "Vermittlung statt Vermarktung — ein erfrischend menschlicher Marktplatz.", src: "Werkraum Journal" },
+      ],
+      partners: ["OFFCUT", "mind-map", "KlimUp", "Circular Hub", "ReParatur Café"],
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      submit: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ sent: true }); },
+      reset: () => this.setState({ sent: false }),
+      becomeDesigner: (e) => { if (e && e.preventDefault) e.preventDefault(); try { window.dispatchEvent(new CustomEvent("rdm-open-login")); } catch (_) {} },
+      goDesigners: (e) => { if (e && e.preventDefault) e.preventDefault(); try { location.href = "designer.dc.html"; } catch (_) {} },
+    };
+  }
+}
+</script>
+</body>
+</html>
