@@ -33,7 +33,7 @@
     <div style="background: var(--medium); color: var(--brand-yellow); text-align: center; padding: 9px 24px; font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.54px; text-transform: uppercase;">Neue Plattform — Jetzt als Designer:in registrieren &amp; Profil erstellen</div>
     <div style="border-bottom: 1px solid var(--border-light);">
       <div style="max-width: 1440px; margin: 0 auto; padding: 0 64px; height: 68px; display: flex; align-items: center; justify-content: space-between;">
-        <a href="home.dc.html" style="text-decoration: none; display: flex; align-items: center; flex: none; margin-right: 40px;"><x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Logo" variant="ink" size="22" hint-size="158px,22px"></x-import></a>
+        <a href="./" style="text-decoration: none; display: flex; align-items: center; flex: none; margin-right: 40px;"><x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.Logo" variant="ink" size="22" hint-size="158px,22px"></x-import></a>
         <nav style="display: flex; align-items: center; gap: 28px;">
           <a href="produkte.dc.html" class="rdm-navlink {{ productsCls }}">Produkte<span class="rdm-ul"></span></a>
           <a href="designer.dc.html" class="rdm-navlink {{ designersCls }}">Designers<span class="rdm-ul"></span></a>
@@ -354,7 +354,7 @@ class Component extends DCLogic {
         if (e && e.preventDefault) e.preventDefault();
         try { localStorage.removeItem("rdm_authed"); } catch (_) {}
         this.setState({ authed: false, menuOpen: false });
-        this.go("home.dc.html");
+        this.go("./");
       },
     };
   }
