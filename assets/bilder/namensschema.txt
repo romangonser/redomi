@@ -1,0 +1,36 @@
+RE-DO-MI Bild-Namensschema
+
+Ziel: Bilder nur in die passenden Ordner ziehen, ohne späteres Nachsortieren.
+
+Allgemein:
+- nur Kleinbuchstaben
+- keine Umlaute
+- Wörter mit Bindestrich trennen
+- keine Leerzeichen
+- möglichst kurz, aber eindeutig
+
+Dateinamen-Format:
+- [bereich]-[inhalt]-[detail]-[nummer].jpg
+- [bereich]-[inhalt]-[nummer].png
+
+Beispiele:
+- designer-lena-brunner-profil-01.jpg
+- designer-lena-brunner-cover-01.jpg
+- produkt-holz-stuhl-01.jpg
+- produkt-metall-lampe-01.jpg
+- anschlagbrett-textil-sofa-01.jpg
+- allgemein-hero-startseite-01.jpg
+
+Ordnerlogik:
+- assets/bilder/designer/profilbild/
+- assets/bilder/designer/cover/
+- assets/bilder/designer/produkte/
+- assets/bilder/designer/andere-arbeiten/
+- assets/bilder/produkte/<material>/
+- assets/bilder/anschlagbrett/<material>/
+- assets/bilder/allgemein/<seitenbereich>/
+
+Empfehlung:
+- pro Motiv mehrere Varianten mit fortlaufender Nummer speichern
+- das wichtigste zuerst im Dateinamen nennen
+- gleiche Begriffe immer gleich schreiben

@@ -1,0 +1,10 @@
+{
+  "id": "sample-product-001",
+  "title": "Beispielprodukt aus Holz",
+  "designer": "Lena Brunner",
+  "category": "Möbel",
+  "material": "Holz",
+  "source": "fiktive Platzhalterdatei",
+  "image": "placeholder.jpg",
+  "notes": "Nur als Strukturvorlage für die Produktbibliothek gedacht."
+}
