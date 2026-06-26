@@ -8,6 +8,9 @@
 <body>
 <x-dc>
 <helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&amp;family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;family=Playfair+Display:ital,wght@1,400;1,500&amp;display=swap">
   <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/fonts.css">
   <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/colors.css">
   <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/typography.css">
@@ -24,10 +27,170 @@
     .rdm-comp::placeholder { color: var(--muted); opacity: 1; }
   </style>
 </helmet>
-<div style="background: var(--white); height: 100vh; padding-top: var(--rdm-header-h, 104px); overflow: hidden;">
+<div style="background: var(--white); min-height: 100vh; padding-top: var(--rdm-header-h, 104px);">
 
   <dc-import name="Header" active="" hint-size="100%,104px"></dc-import>
 
+  <!-- ══════ ÜBERSICHT (Landing beim Laden) ══════ -->
+  <sc-if value="{{ isOverview }}" hint-placeholder-val="{{ true }}">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 56px 64px 88px; display: flex; flex-direction: column; gap: 32px;">
+
+      <!-- account header -->
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <span style="width: 64px; height: 64px; flex: none; border-radius: 50%; background: var(--surface-alt) url('assets/bianca.jpg') center 30% / cover no-repeat; border: 3px solid var(--brand-yellow); box-sizing: border-box;"></span>
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">Mein Konto</span>
+          <h1 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 34px; line-height: 1.05; letter-spacing: -0.3px; color: var(--ink);">Hallo Bianca</h1>
+          <span style="font-family: var(--font-body); font-weight: 300; font-size: 14px; color: var(--muted);">Mitglied seit 2024 · Zürich</span>
+        </div>
+      </div>
+
+      <!-- tab bar -->
+      <div style="display: flex; gap: 2px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap;">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+          <sc-if value="{{ t.active }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ t.onClick }}" style="background: none; border: none; cursor: pointer; padding: 12px 16px; font-family: var(--font-display); font-weight: 800; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink); border-bottom: 2px solid var(--ink); margin-bottom: -1px">{{ t.label }}</button>
+          </sc-if>
+          <sc-if value="{{ t.inactive }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ t.onClick }}" style="background: none; border: none; cursor: pointer; padding: 12px 16px; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px;" style-hover="color: var(--ink);">{{ t.label }}</button>
+          </sc-if>
+        </sc-for>
+      </div>
+
+      <!-- ▸ ÜBERSICHT -->
+      <sc-if value="{{ tabOverview }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 36px;">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+            <sc-for list="{{ stats }}" as="st" hint-placeholder-count="3">
+              <div style="border: 1px solid var(--border-light); border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 6px;">
+                <span style="font-family: var(--font-display); font-weight: 700; font-size: 34px; letter-spacing: 0.5px; color: var(--brand-yellow)">{{ st.value }}</span>
+                <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">{{ st.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <h2 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--ink);">Meine Projekte</h2>
+            <sc-for list="{{ projectCards }}" as="p" hint-placeholder-count="3">
+              <button onClick="{{ p.onClick }}" style="text-align: left; cursor: pointer; border: 1px solid var(--border-light); border-radius: 4px; padding: 20px 22px; background: var(--white); display: flex; flex-direction: column; gap: 10px;" style-hover="border-color: var(--ink);">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: 0.2px; color: var(--ink);">{{ p.title }}</span>
+                    <sc-if value="{{ p.hasUnread }}" hint-placeholder-val="{{ false }}">
+                      <span title="Neue Nachricht" style="min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--brand-yellow); color: var(--ink); font-family: var(--font-display); font-weight: 700; font-size: 11px; line-height: 1; display: inline-flex; align-items: center; justify-content: center;">{{ p.unread }}</span>
+                    </sc-if>
+                  </div>
+                  <span style="font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--forest); background: var(--surface-alt); padding: 5px 10px; border-radius: 2px; white-space: nowrap;">{{ p.status }}</span>
+                </div>
+                <span style="font-family: var(--font-body); font-weight: 300; font-size: 13px; color: var(--medium);">{{ p.who }}</span>
+                <span style="font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.5; color: var(--medium); border-top: 1px solid var(--border-light); padding-top: 10px;">{{ p.snippet }}</span>
+                <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink);">Verlauf öffnen →</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ▸ BESTELLUNGEN (Platzhalter / leer) -->
+      <sc-if value="{{ tabOrders }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <h2 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--ink);">Gekaufte Artikel</h2>
+          <div style="border: 1px solid var(--border-light); border-radius: 4px; padding: 72px 40px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <h3 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: 0.2px; color: var(--ink);">Noch keine Bestellungen</h3>
+            <p style="margin: 0; max-width: 380px; font-family: var(--font-body); font-weight: 300; font-size: 15px; line-height: 1.6; color: var(--medium);">Was du im Shop kaufst, erscheint hier — mit Status, Beleg und der Gestalter:in dahinter.</p>
+            <a href="produkte.dc.html" style="margin-top: 6px; text-decoration: none; background: var(--brand-yellow); color: var(--ink); border-radius: 2px; padding: 13px 26px; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase;">Im Shop stöbern →</a>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ▸ AUSSCHREIBUNGEN -->
+      <sc-if value="{{ tabBriefs }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 16px; max-width: 720px;">
+          <h2 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--ink);">Meine Ausschreibungen</h2>
+          <div style="border: 1px solid var(--border-light); border-radius: 4px; display: flex; flex-direction: column; overflow: hidden;">
+            <sc-for list="{{ briefRows }}" as="b" hint-placeholder-count="2">
+              <a href="{{ b.href }}" style="text-decoration: none; padding: 16px 20px; display: flex; flex-direction: column; gap: 3px; border-bottom: 1px solid var(--border-light);" style-hover="background: var(--surface-alt);">
+                <span style="font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--ink);">{{ b.title }}</span>
+                <span style="font-family: var(--font-body); font-weight: 300; font-size: 12px; color: var(--muted);">{{ b.meta }}</span>
+              </a>
+            </sc-for>
+            <sc-if value="{{ noBriefs }}" hint-placeholder-val="{{ false }}">
+              <span style="padding: 18px 20px; font-family: var(--font-body); font-style: italic; font-weight: 300; font-size: 14px; line-height: 1.5; color: var(--muted);">Noch keine eigenen Ausschreibungen. Erstelle eine auf dem Anschlagbrett.</span>
+            </sc-if>
+          </div>
+          <a href="anschlagbrett.dc.html" style="text-decoration: none; font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--forest);">+ Neue Ausschreibung</a>
+        </div>
+      </sc-if>
+
+      <!-- ▸ PROFIL (Platzhalter) -->
+      <sc-if value="{{ tabProfile }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 24px; max-width: 640px;">
+          <span style="font-family: var(--font-body); font-style: italic; font-weight: 300; font-size: 14px; color: var(--muted);">Platzhalter — die Profilverwaltung folgt.</span>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Name</span>
+              <div style="border: 1px solid var(--border-light); border-radius: 2px; padding: 13px 14px; font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); background: var(--surface-alt);">Bianca Rieder</div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">E-Mail</span>
+              <div style="border: 1px solid var(--border-light); border-radius: 2px; padding: 13px 14px; font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); background: var(--surface-alt);">bianca.r@example.ch</div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Region</span>
+              <div style="border: 1px solid var(--border-light); border-radius: 2px; padding: 13px 14px; font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); background: var(--surface-alt);">Zürich</div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Mitglied seit</span>
+              <div style="border: 1px solid var(--border-light); border-radius: 2px; padding: 13px 14px; font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); background: var(--surface-alt);">2024</div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 7px;">
+            <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Über mich</span>
+            <div style="border: 1px solid var(--border-light); border-radius: 2px; padding: 13px 14px; min-height: 80px; font-family: var(--font-body); font-weight: 300; font-size: 15px; line-height: 1.6; color: var(--medium); background: var(--surface-alt);">Liebt Dinge mit Geschichte und gibt alten Stücken ein zweites Leben.</div>
+          </div>
+          <button style="align-self: flex-start; background: transparent; color: var(--ink); border: 1px solid var(--ink); border-radius: 2px; padding: 13px 26px; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; cursor: pointer;" style-hover="background: var(--ink); color: var(--white);">Profil bearbeiten</button>
+        </div>
+      </sc-if>
+
+      <!-- ▸ EINSTELLUNGEN (Platzhalter) -->
+      <sc-if value="{{ tabSettings }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 28px; max-width: 640px;">
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <h2 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--ink);">Benachrichtigungen</h2>
+            <span style="font-family: var(--font-body); font-style: italic; font-weight: 300; font-size: 14px; color: var(--muted);">Platzhalter — Einstellungen werden noch nicht gespeichert.</span>
+          </div>
+          <div style="border: 1px solid var(--border-light); border-radius: 4px; overflow: hidden;">
+            <sc-for list="{{ settingsRows }}" as="r" hint-placeholder-count="3">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--border-light);">
+                <div style="display: flex; flex-direction: column; gap: 2px;">
+                  <span style="font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--ink);">{{ r.label }}</span>
+                  <span style="font-family: var(--font-body); font-weight: 300; font-size: 13px; color: var(--muted);">{{ r.desc }}</span>
+                </div>
+                <sc-if value="{{ r.on }}" hint-placeholder-val="{{ false }}">
+                  <button onClick="{{ r.onClick }}" aria-label="Aus" style="width: 42px; height: 24px; flex: none; border-radius: 12px; border: none; cursor: pointer; background: var(--brand-yellow); position: relative;"><span style="position: absolute; top: 3px; left: 21px; width: 18px; height: 18px; border-radius: 50%; background: var(--white);"></span></button>
+                </sc-if>
+                <sc-if value="{{ r.off }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ r.onClick }}" aria-label="Ein" style="width: 42px; height: 24px; flex: none; border-radius: 12px; border: none; cursor: pointer; background: var(--border-light); position: relative;"><span style="position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--white);"></span></button>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <h2 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--ink);">Konto</h2>
+            <div style="border: 1px solid var(--border-light); border-radius: 4px; overflow: hidden;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--border-light);"><span style="font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink);">E-Mail-Adresse ändern</span><span style="color: var(--muted); font-size: 18px;">›</span></div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--border-light);"><span style="font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink);">Passwort ändern</span><span style="color: var(--muted); font-size: 18px;">›</span></div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px;"><span style="font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink);">Sprache</span><span style="font-family: var(--font-body); font-weight: 300; font-size: 14px; color: var(--muted);">Deutsch</span></div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+  </sc-if>
+
+  <!-- ══════ PROJEKT-VERLAUF / NACHRICHTEN (bestehender Flow) ══════ -->
+  <sc-if value="{{ isThread }}" hint-placeholder-val="{{ false }}">
   <div style="height: calc(100vh - var(--rdm-header-h, 104px)); display: flex; min-height: 0;">
 
     <!-- ── Sidebar ── -->
@@ -52,42 +215,60 @@
 
       <!-- thread header + stepper -->
       <div style="padding: 20px 32px; border-bottom: 1px solid var(--border-light); display: flex; flex-direction: column; gap: 14px;">
+        <button onClick="{{ goOverview }}" style="align-self: flex-start; background: none; border: none; cursor: pointer; font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); padding: 0;" style-hover="color: var(--ink);">← Zur Übersicht</button>
         <span style="font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: 0.3px; color: var(--ink);">{{ threadTitle }}</span>
+        <sc-if value="{{ showOfferFlow }}" hint-placeholder-val="{{ true }}">
         <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
           <sc-for list="{{ stepper }}" as="s" hint-placeholder-count="5">
             <button onClick="{{ s.onClick }}" style="font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; padding: 7px 13px; border-radius: 2px; cursor: pointer; white-space: nowrap; border: 1px solid {{ s.bd }}; background: {{ s.bg }}; color: {{ s.fg }};">{{ s.label }}</button>
             <sc-if value="{{ s.notLast }}" hint-placeholder-val="{{ true }}"><span style="color: var(--muted); font-size: 13px;">›</span></sc-if>
           </sc-for>
         </div>
+        </sc-if>
       </div>
 
       <!-- thread -->
       <div class="rdm-msgs" style="flex: 1; overflow-y: auto; padding: 28px 32px; display: flex; flex-direction: column; gap: 16px; background: var(--white);">
         <sc-for list="{{ msgs }}" as="m" hint-placeholder-count="3">
           <sc-if value="{{ m.me }}" hint-placeholder-val="{{ false }}">
-            <div style="display: flex; justify-content: flex-end;"><div style="max-width: 520px; padding: 12px 16px; border-radius: 12px 12px 2px 12px; background: var(--ink); color: var(--white); font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.5;">{{ m.text }}</div></div>
+            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+              <div style="max-width: 520px; padding: 12px 16px; border-radius: 12px 12px 2px 12px; background: var(--ink); color: var(--white); font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.5;">{{ m.text }}</div>
+              <sc-if value="{{ m.hasImages }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; gap: 8px;">
+                  <sc-for list="{{ m.images }}" as="img" hint-placeholder-count="3">
+                    <span style="width: 76px; height: 76px; flex: none; border-radius: 6px; border: 1px solid var(--border-light); background: var(--surface-alt) url({{ img }}) center / cover no-repeat;"></span>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
           </sc-if>
           <sc-if value="{{ m.them }}" hint-placeholder-val="{{ true }}">
-            <div style="display: flex; justify-content: flex-start;"><div style="max-width: 520px; padding: 12px 16px; border-radius: 12px 12px 12px 2px; background: var(--surface-alt); color: var(--ink); font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.5;">{{ m.text }}</div></div>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+              <sc-if value="{{ m.hasSender }}" hint-placeholder-val="{{ false }}">
+                <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); padding-left: 4px;">{{ m.sender }}</span>
+              </sc-if>
+              <div style="max-width: 520px; padding: 12px 16px; border-radius: 12px 12px 12px 2px; background: var(--surface-alt); color: var(--ink); font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.5;">{{ m.text }}</div>
+            </div>
           </sc-if>
         </sc-for>
 
+        <sc-if value="{{ showOfferFlow }}" hint-placeholder-val="{{ false }}">
         <!-- stage card -->
         <div style="align-self: center; width: 100%; max-width: 460px; background: var(--white); border: 1px solid var(--border-light); border-radius: 4px; padding: 24px; display: flex; flex-direction: column; gap: 14px;">
 
           <sc-if value="{{ isStage0 }}" hint-placeholder-val="{{ false }}">
             <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--forest);">Anfrage gesendet</span>
             <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--medium);">{{ who }} bereitet eine Offerte vor. Du wirst benachrichtigt, sobald sie eintrifft.</p>
-            <button onClick="{{ next }}" style="align-self: flex-start; background: var(--brand-yellow); color: var(--ink); border: none; border-radius: 2px; padding: 12px 24px; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; cursor: pointer;">Offerte erhalten (Demo)</button>
+            <button onClick="{{ next }}" style="align-self: flex-start; background: var(--brand-yellow); color: var(--ink); border: none; border-radius: 2px; padding: 12px 24px; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; cursor: pointer;">Offerte erhalten</button>
           </sc-if>
 
           <sc-if value="{{ isStage1 }}" hint-placeholder-val="{{ true }}">
             <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--forest);">Offerte · von {{ who }}</span>
-            <h3 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: 0.3px; color: var(--ink);">Sofa neu beziehen</h3>
-            <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--medium);">Bezug erneuern mit Patchwork aus Stoffresten, Gestell aufarbeiten und neu verleimen. Dauer ca. 4 Wochen.</p>
+            <h3 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: 0.3px; color: var(--ink);">Stühle Polstern</h3>
+            <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--medium);">Bezug erneuern mit Patchwork aus Stoffresten, Gestell aufarbeiten und neu verleimen. Dauer ca. 2 Wochen.</p>
             <div style="display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--border-light); padding-top: 12px;">
-              <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: var(--font-body); font-weight: 300; font-size: 14px; color: var(--medium);">Gesamtpreis</span><span style="font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--ink);">CHF 1'920.–</span></div>
-              <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: var(--font-body); font-weight: 300; font-size: 14px; color: var(--medium);">Anzahlung (30%)</span><span style="font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--ink);">CHF 576.–</span></div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: var(--font-body); font-weight: 300; font-size: 14px; color: var(--medium);">Gesamtpreis</span><span style="font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--ink);">CHF 380.-</span></div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: var(--font-body); font-weight: 300; font-size: 14px; color: var(--medium);">Anzahlung (30%)</span><span style="font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--ink);">CHF 114.-</span></div>
             </div>
             <div style="display: flex; gap: 10px; margin-top: 4px;">
               <button onClick="{{ next }}" style="flex: 1; background: var(--brand-yellow); color: var(--ink); border: none; border-radius: 2px; padding: 12px 18px; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; cursor: pointer;">Akzeptieren</button>
@@ -98,7 +279,7 @@
           <sc-if value="{{ isStage2 }}" hint-placeholder-val="{{ false }}">
             <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--forest);">Anzahlung</span>
             <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--medium);">Mit der Anzahlung startet die Produktion. Der Restbetrag wird bei Abschluss fällig.</p>
-            <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: var(--font-body); font-weight: 300; font-size: 14px; color: var(--medium);">Anzahlung</span><span style="font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--ink);">CHF 576.–</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-family: var(--font-body); font-weight: 300; font-size: 14px; color: var(--medium);">Anzahlung</span><span style="font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--ink);">CHF 114.–</span></div>
             <div style="display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--border-light); padding-top: 12px;">
               <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Zahlungsmethode</span>
               <sc-for list="{{ payOptions }}" as="po" hint-placeholder-count="3">
@@ -114,7 +295,7 @@
 
           <sc-if value="{{ isStage3 }}" hint-placeholder-val="{{ false }}">
             <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--forest);">In Produktion</span>
-            <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--medium);">{{ who }} arbeitet an deinem Stück. Voraussichtliche Fertigstellung: in 4 Wochen.</p>
+            <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--medium);">{{ who }} arbeitet an deinem Stück. Voraussichtliche Fertigstellung: in 2 Wochen.</p>
             <div style="height: 8px; border-radius: 4px; background: var(--surface-alt); overflow: hidden;"><div style="width: 55%; height: 100%; background: var(--brand-yellow);"></div></div>
             <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted);">55% · Polsterung abgeschlossen</span>
             <button onClick="{{ next }}" style="align-self: flex-start; background: var(--brand-yellow); color: var(--ink); border: none; border-radius: 2px; padding: 12px 24px; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; cursor: pointer;">Lieferung bestätigen &amp; abschliessen</button>
@@ -124,7 +305,7 @@
             <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--forest);">Abschluss</span>
             <sc-if value="{{ notRated }}" hint-placeholder-val="{{ true }}">
               <h3 style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--ink);">Projekt abgeschlossen</h3>
-              <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--medium);">Schlusszahlung CHF 1'344.– beglichen. Wie war die Zusammenarbeit mit {{ who }}?</p>
+              <p style="margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--medium);">Schlusszahlung CHF 266.– beglichen. Wie war die Zusammenarbeit mit {{ who }}?</p>
               <div style="display: flex; gap: 6px;">
                 <sc-for list="{{ stars }}" as="st" hint-placeholder-count="5">
                   <button onClick="{{ st.onClick }}" aria-label="Bewerten" style="background: none; border: none; cursor: pointer; font-size: 30px; line-height: 1; padding: 0; color: {{ st.color }};">★</button>
@@ -137,6 +318,7 @@
             </sc-if>
           </sc-if>
         </div>
+        </sc-if>
       </div>
 
       <!-- composer -->
@@ -146,15 +328,18 @@
       </div>
     </main>
   </div>
+  </sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
 class Component extends DCLogic {
   state = {
-    stage: 1, activeIdx: 0, draft: "", pay: "TWINT", rated: 0,
+    view: "overview", myBriefs: [], unread: [1, 0, 0],
+    tab: "overview", settings: { email: true, push: false, news: true },
+    stage: 0, activeIdx: 0, draft: "", pay: "TWINT", rated: 0,
     msgs: [
       { me: false, text: "Hallo! Schön, dass du dich meldest. Worum geht es genau?" },
-      { me: true, text: "Hi! Es geht um ein Stück mit Geschichte — ich schick dir gleich die Details." },
+      { me: true, text: "Hi! Es geht um ein Stück mit Geschichte — ich schick dir gleich die Details.", images: ["assets/chat-stuhl-orange.jpg", "assets/chat-stuhl-bunt.jpg", "assets/chat-quilt.jpg"] },
       { me: false, text: "Perfekt. Ich schaue es mir an und melde mich mit einer Offerte." },
     ],
   };
@@ -165,6 +350,7 @@ class Component extends DCLogic {
         window.dispatchEvent(new CustomEvent("rdm-open-login"));
       }
     } catch (e) {}
+    import("./shop-data.js").then((mod) => this.setState({ myBriefs: mod.getUserBriefs() })).catch(() => {});
   }
 
   send = () => {
@@ -177,16 +363,89 @@ class Component extends DCLogic {
     const who = "Lena Brunner";
     const steps = ["Anfrage", "Offerte", "Anzahlung", "Produktion", "Abschluss"];
     const { stage, activeIdx, rated } = this.state;
+    const latestBrief = (this.state.myBriefs || [])[0] || null;
+    const briefActive = !!latestBrief && activeIdx === 0;
 
     const projects = [
-      { title: "Sofa-Projekt", who: "mit " + who, status: steps[stage] },
-      { title: "Lampen-Anfrage", who: "Marco Keller", status: "In Bearbeitung" },
+      latestBrief
+        ? { title: latestBrief.title, who: "Sofia Meier & Marco Keller", status: "Offen" }
+        : { title: "Stühle Polstern", who: "mit " + who, status: steps[stage] },
       { title: "Tisch-Idee", who: "Jonas Frei", status: "Abgeschlossen" },
+    ];
+
+    const myBriefs = this.state.myBriefs || [];
+    const unread = this.state.unread || [0, 0, 0];
+    const unreadDisplay = unread.slice();
+    if (latestBrief) unreadDisplay[0] = unread[0] > 0 ? 2 : 0;
+    const totalUnread = unreadDisplay.reduce((a, b) => a + b, 0);
+
+    const briefMsgs = [
+      { me: true, text: "Hallo! Ich habe zwei alte LC2-Sessel — Chromgestell und oranger Lederbezug, beide ziemlich abgenutzt. Ich würde sie gern restaurieren lassen.", images: ["assets/chat-stuhl-orange.jpg", "assets/chat-stuhl-bunt.jpg", "assets/chat-quilt.jpg"] },
+      { me: false, sender: "Sofia Meier", text: "Hoi Bianca! Schöne Stücke. Ich würde den abgenutzten Lederbezug durch gerettetes Anilinleder in einem warmen Cognac ersetzen und Sitz wie Rücken neu aufpolstern — ca. 3 Wochen, Material inklusive." },
+      { me: false, sender: "Marco Keller", text: "Grüezi Bianca! Mich reizt vor allem das Chromgestell: entrosten und neu verchromen, alternativ matt bürsten für einen ruhigeren Look. Den Bezug kombiniere ich mit einer Sattlerin aus meinem Atelier — schick mir gern ein paar Detailfotos." },
+    ];
+    const baseMsgs = briefActive ? briefMsgs : this.state.msgs;
+
+    const tab = this.state.tab;
+    const TABS = [
+      { key: "overview", label: "\u00dcbersicht" },
+      { key: "orders", label: "Bestellungen" },
+      { key: "briefs", label: "Ausschreibungen" },
+      { key: "profile", label: "Profil" },
+      { key: "settings", label: "Einstellungen" },
+    ];
+    const set = this.state.settings || {};
+    const SROWS = [
+      { key: "email", label: "E-Mail-Benachrichtigungen", desc: "Updates zu Projekten und Offerten" },
+      { key: "push", label: "Push-Benachrichtigungen", desc: "Sofortmeldungen im Browser" },
+      { key: "news", label: "Newsletter", desc: "Neues aus der Upcycle-Community" },
+    ];
+    const projData = [
+      latestBrief
+        ? { title: latestBrief.title, who: "Sofia Meier & Marco Keller", status: "Offen",
+            snippet: "Zwei Designer:innen haben dir Vorschläge zur Restauration geschickt — öffne den Chat." }
+        : { title: "Stühle Polstern", who: "mit " + who, status: steps[stage], snippet: who + " hat dir eine Offerte über CHF 1'920.– geschickt — bereit zur Prüfung." },
+      { title: "Tisch-Idee", who: "mit Jonas Frei", status: "Abgeschlossen", snippet: "Projekt abgeschlossen und bewertet." },
     ];
 
     return {
       who: who,
-      threadTitle: "Sofa-Projekt · mit " + who,
+      isOverview: this.state.view === "overview",
+      isThread: this.state.view === "thread",
+      goOverview: () => this.setState({ view: "overview" }),
+      stats: [
+        { value: "1", label: "Aktive Projekte" },
+        { value: String(totalUnread), label: "Neue Nachrichten" },
+        { value: String(myBriefs.length), label: "Offene Ausschreibungen" },
+      ],
+      projectCards: projData.map((p, i) => ({
+        title: p.title, who: p.who, status: p.status, snippet: p.snippet,
+        unread: unreadDisplay[i], hasUnread: unreadDisplay[i] > 0,
+        onClick: () => this.setState((s) => {
+          const u = (s.unread || []).slice(); u[i] = 0;
+          return { view: "thread", activeIdx: i, unread: u };
+        }),
+      })),
+      briefRows: myBriefs.map((b) => ({
+        title: b.title, meta: b.tag + " · " + b.ort + " · " + b.date,
+        href: "ausschreibung.dc.html?id=" + encodeURIComponent(b.id),
+      })),
+      noBriefs: myBriefs.length === 0,
+      tabs: TABS.map((t) => ({
+        label: t.label, active: tab === t.key, inactive: tab !== t.key,
+        onClick: () => this.setState({ tab: t.key }),
+      })),
+      tabOverview: tab === "overview",
+      tabOrders: tab === "orders",
+      tabBriefs: tab === "briefs",
+      tabProfile: tab === "profile",
+      tabSettings: tab === "settings",
+      settingsRows: SROWS.map((r) => ({
+        label: r.label, desc: r.desc, on: !!set[r.key], off: !set[r.key],
+        onClick: () => this.setState((s) => ({ settings: { ...s.settings, [r.key]: !s.settings[r.key] } })),
+      })),
+      threadTitle: briefActive ? (latestBrief.title + " · 2 Vorschläge") : ("Stühle Polstern · mit " + who),
+      showOfferFlow: !briefActive,
       projects: projects.map((p, i) => ({
         title: p.title, who: p.who, status: p.status,
         bg: i === activeIdx ? "var(--white)" : "transparent",
@@ -201,7 +460,7 @@ class Component extends DCLogic {
         fg: i === stage ? "var(--white)" : (i < stage ? "var(--ink)" : "var(--muted)"),
         onClick: () => this.setState({ stage: i, rated: 0 }),
       })),
-      msgs: this.state.msgs.map((m) => ({ text: m.text, me: m.me, them: !m.me })),
+      msgs: baseMsgs.map((m) => ({ text: m.text, me: !!m.me, them: !m.me, sender: m.sender || "", hasSender: !m.me && !!m.sender, images: m.images || [], hasImages: !!(m.images && m.images.length) })),
       draft: this.state.draft,
       onDraft: (e) => this.setState({ draft: e.target.value }),
       onKey: (e) => { if (e.key === "Enter") this.send(); },

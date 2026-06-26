@@ -8,6 +8,9 @@
 <body>
 <x-dc>
 <helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&amp;family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;family=Playfair+Display:ital,wght@1,400;1,500&amp;display=swap">
   <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/fonts.css">
   <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/colors.css">
   <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/typography.css">
@@ -59,7 +62,7 @@
       </div>
       <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-top: 48px;">
         <sc-for list="{{ products }}" as="p" hint-placeholder-count="5">
-          <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.ProductCard" image="{{ p.image }}" category="{{ p.category }}" title="{{ p.title }}" designer="{{ p.designer }}" price="{{ p.price }}" onClick="{{ goProducts }}" hint-size="100%,330px"></x-import>
+          <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.ProductCard" image="{{ p.image }}" category="{{ p.category }}" title="{{ p.title }}" designer="{{ p.designer }}" price="{{ p.price }}" onClick="{{ p.open }}" hint-size="100%,330px"></x-import>
         </sc-for>
       </div>
     </div>
@@ -97,7 +100,7 @@
       <div class="rdm-scroll" style="display: flex; gap: 24px; overflow-x: auto; margin-top: 48px; padding-bottom: 4px;">
         <sc-for list="{{ designers }}" as="d" hint-placeholder-count="4">
           <div style="flex: 0 0 auto; width: 300px;">
-            <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.DesignerCard" image="{{ d.image }}" name="{{ d.name }}" discipline="{{ d.discipline }}" location="{{ d.location }}" onClick="{{ goDesigners }}" hint-size="100%,420px"></x-import>
+            <x-import component-from-global-scope="ReDoMiDesignSystem_e4680b.DesignerCard" image="{{ d.image }}" name="{{ d.name }}" discipline="{{ d.discipline }}" location="{{ d.location }}" onClick="{{ d.open }}" hint-size="100%,420px"></x-import>
           </div>
         </sc-for>
       </div>
@@ -142,17 +145,27 @@
 class Component extends DCLogic {
   go(file) { try { location.href = file; } catch (e) {} }
 
+  openProduct(id) {
+    try { sessionStorage.setItem("rdm_product", id); } catch (e) {}
+    try { location.href = "produkt.dc.html?id=" + encodeURIComponent(id); } catch (e) {}
+  }
+
+  openDesigner(id) {
+    try { sessionStorage.setItem("rdm_designer", id); } catch (e) {}
+    try { location.href = "designer-profil.dc.html?id=" + encodeURIComponent(id); } catch (e) {}
+  }
+
   renderVals() {
     const A = "assets/";
-    const U = (id) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=640&q=70`;
+    const U = (id) => `assets/fotos/${id}.jpg`;
 
     const products = [
-      { title: "Sneaker High – Green Tiger", designer: "Elephbo", category: "MODE", price: "CHF 99", image: A + "product-sneaker.jpg" },
-      { title: "Travelling Companions", designer: "Kirsty Elson Designs", category: "KUNST", price: "CHF 55", image: U("1493106641515-6b5631de4bb9") },
-      { title: "Casual, neu gedacht", designer: "Re-Wear Zürich", category: "MODE", price: "CHF 140", image: U("1483985988355-763728e1935b") },
-      { title: "SULA – Massivholzbett", designer: "André Mailfert", category: "WOHNEN", price: "CHF 830", image: U("1567538096630-e0c55bd6374c") },
-      { title: "Lesekissen CORAL", designer: "Sprungbrett / Palettino", category: "OBJEKTE", price: "CHF 20", image: U("1584100936595-c0654b55a2e2") },
-    ];
+      { id: "sneaker-green-tiger", title: "Sneaker High – Green Tiger", designer: "Sofia Meier", category: "MODE", price: "CHF 99", image: A + "product-sneaker.jpg" },
+      { id: "casual-neu-gedacht", title: "Patchwork-Schal", designer: "Sofia Meier", category: "MODE", price: "CHF 140", image: A + "schal-1.png" },
+      { id: "hocker-deckstack", title: "Hocker «Deckstack»", designer: "Elias Roth", category: "MÖBEL", price: "CHF 240", image: A + "hocker-1.png" },
+      { id: "werkstatt-serie-iv", title: "Werkstatt Serie IV", designer: "Sofia Meier", category: "OBJEKTE", price: "CHF 320", image: A + "werkstatt-serie-iv.png" },
+      { id: "travelling-companions", title: "Travelling Companions", designer: "Noah Steiner", category: "KUNST", price: "CHF 55", image: A + "travelling-companions.png" },
+    ].map((p) => ({ ...p, open: () => this.openProduct(p.id) }));
     const categories = [
       { label: "ACCESSOIRES", sub: "Kleider & Accessoires", image: A + "category-kleider.jpg" },
       { label: "WOHNEN", sub: "Interieur & Deko", image: U("1532372320572-cda25653a26d") },
@@ -161,11 +174,11 @@ class Component extends DCLogic {
       { label: "SCHMUCK", sub: "Schmuck & Mehr", image: U("1611652022419-a9419f74343d") },
     ];
     const designers = [
-      { name: "Leila Amrani", discipline: "Textil & Mode", location: "Zürich", image: A + "designer-portrait.jpg" },
-      { name: "The Froschprince", discipline: "Möbel & Holz", location: "Basel", image: U("1500648767791-00dcc994a43e") },
-      { name: "Marie Berger", discipline: "Objekte & Kunst", location: "Bern", image: U("1438761681033-6461ffad8d80") },
-      { name: "Jaz Volpe", discipline: "Möbel & Kunst", location: "Luzern", image: U("1507003211169-0a1dd7228f2d") },
-    ];
+      { id: "lena-brunner", name: "Lena Brunner", discipline: "Möbel & Holz", location: "Basel", image: "assets/designer-lena.png" },
+      { id: "sofia-meier", name: "Sofia Meier", discipline: "Mode & Textil", location: "Bern", image: "assets/designer-sofia.webp" },
+      { id: "jonas-frei", name: "Jonas Frei", discipline: "Möbel & Metall", location: "Luzern", image: U("1507003211169-0a1dd7228f2d") },
+      { id: "noah-steiner", name: "Noah Steiner", discipline: "Objekte & Kunst", location: "Zürich", image: U("1506794778202-cad84cf45f1d") },
+    ].map((d) => ({ ...d, open: () => this.openDesigner(d.id) }));
     const quotes = [
       { quote: "Re-Do-Mi hat mir als Designerin eine echte Bühne gegeben. Ich erreiche Kund:innen, die meine Arbeit wirklich verstehen.", author: "Sophie Kraft", role: "Keramikerin, Basel", featured: true },
       { quote: "Ich habe über das Anschlagbrett genau die Schneiderin gefunden, die ich für mein Upcycling-Projekt gesucht hatte. Schnell, direkt, persönlich.", author: "Dominique Hofer", role: "Kundin, Zürich", featured: true },

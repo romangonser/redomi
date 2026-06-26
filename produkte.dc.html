@@ -8,6 +8,9 @@
 <body>
 <x-dc>
 <helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&amp;family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;family=Playfair+Display:ital,wght@1,400;1,500&amp;display=swap">
   <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/fonts.css">
   <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/colors.css">
   <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/typography.css">
@@ -163,14 +166,15 @@ class Component extends DCLogic {
     this.setState((s) => {
       const favs = s.favs.includes(title) ? s.favs.filter((t) => t !== title) : [...s.favs, title];
       try { localStorage.setItem("rdm_favs", JSON.stringify(favs)); } catch (e) {}
+      try { window.dispatchEvent(new CustomEvent("rdm-fav-changed", { detail: { count: favs.length } })); } catch (e) {}
       return { favs };
     });
   };
 
   renderVals() {
     const PRODUCTS = this.state.products;
-    const CATEGORIES = ["Alle", "Möbel", "Mode", "Leuchten", "Kunst", "Objekte", "Schmuck"];
-    const MATERIALS = ["Alle", "Holz", "Textil", "Metall", "Glas"];
+    const CATEGORIES = ["Alle", "Mode", "Kunst", "Möbel", "Schmuck", "Sonstiges"];
+    const MATERIALS = ["Alle", "Glas", "Holz", "Metall", "Textil"];
     const CITIES = ["Alle", "Zürich", "Basel", "Bern", "Luzern", "Genf"];
     const SORTS = ["Neueste zuerst", "Preis aufsteigend", "Preis absteigend", "Name A–Z"];
 
@@ -179,11 +183,11 @@ class Component extends DCLogic {
     // Suchbegriff → optionale Synonyme auf Kategorien/Material
     const ql = (q || "").trim().toLowerCase();
     const SYN = {
-      "lampe": "Leuchten", "lampen": "Leuchten", "leuchte": "Leuchten", "leuchten": "Leuchten", "licht": "Leuchten",
+      "lampe": "Möbel", "lampen": "Möbel", "leuchte": "Möbel", "leuchten": "Möbel", "licht": "Möbel",
       "sofa": "Möbel", "stuhl": "Möbel", "tisch": "Möbel", "möbel": "Möbel", "hocker": "Möbel", "bett": "Möbel",
       "kleid": "Mode", "kleider": "Mode", "mode": "Mode", "tasche": "Mode", "sneaker": "Mode",
       "schmuck": "Schmuck", "ohrringe": "Schmuck",
-      "kunst": "Kunst", "vase": "Objekte", "objekt": "Objekte", "objekte": "Objekte",
+      "kunst": "Kunst", "vase": "Sonstiges", "objekt": "Sonstiges", "objekte": "Sonstiges", "karaffe": "Sonstiges",
       "holz": "Holz", "textil": "Textil", "metall": "Metall", "glas": "Glas",
     };
     const synHit = ql ? SYN[ql] : null;

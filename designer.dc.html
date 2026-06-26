@@ -8,6 +8,9 @@
 <body>
 <x-dc>
 <helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&amp;family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;family=Playfair+Display:ital,wght@1,400;1,500&amp;display=swap">
   <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/fonts.css">
   <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/colors.css">
   <link rel="stylesheet" href="_ds/re-do-mi-design-system-e4680b52-dbb9-4e7a-84da-ba1b58bcba54/tokens/typography.css">
@@ -41,14 +44,14 @@
       <span style="position: absolute; left: 16px; top: 0; bottom: 0; display: flex; align-items: center; color: var(--muted);">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
       </span>
-      <input value="{{ q }}" onChange="{{ onQ }}" class="rdm-srch" placeholder="Name, Ort oder Material suchen …" style="width: 100%; padding: 13px 16px 13px 44px; border: 1px solid var(--border-light); border-radius: 2px; outline: none; font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); background: var(--white);">
+      <input value="{{ q }}" onChange="{{ onQ }}" class="rdm-srch" placeholder="Name, Ort oder Kategorie suchen …" style="width: 100%; padding: 13px 16px 13px 44px; border: 1px solid var(--border-light); border-radius: 2px; outline: none; font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--ink); background: var(--white);">
     </div>
 
-    <!-- material filter + count -->
+    <!-- category filter + sort -->
     <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 24px;">
       <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-        <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin-right: 4px;">Material</span>
-        <sc-for list="{{ matChips }}" as="c" hint-placeholder-count="6">
+        <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin-right: 4px;">Kategorie</span>
+        <sc-for list="{{ catChips }}" as="c" hint-placeholder-count="6">
           <sc-if value="{{ c.active }}" hint-placeholder-val="{{ false }}">
             <button onClick="{{ c.onClick }}" style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; padding: 9px 16px; border-radius: 2px; cursor: pointer; border: 1px solid var(--ink); background: var(--ink); color: var(--white); white-space: nowrap;">{{ c.label }}</button>
           </sc-if>
@@ -57,7 +60,17 @@
           </sc-if>
         </sc-for>
       </div>
-      <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">{{ countLabel }}</span>
+      <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
+        <label style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Sortieren</span>
+          <select value="{{ sort }}" onChange="{{ onSort }}" class="rdm-srch" style="padding: 9px 32px 9px 14px; border: 1px solid var(--border-light); border-radius: 2px; outline: none; font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink); background: var(--white); cursor: pointer;">
+            <sc-for list="{{ sortOptions }}" as="o" hint-placeholder-count="3">
+              <option value="{{ o.value }}">{{ o.label }}</option>
+            </sc-for>
+          </select>
+        </label>
+        
+      </div>
     </div>
 
     <!-- grid -->
@@ -69,7 +82,7 @@
       </div>
     </sc-if>
     <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
-      <p style="margin-top: 48px; font-family: var(--font-body); font-weight: 300; font-size: 16px; color: var(--medium);">Keine Designer:innen gefunden. Passe Suche oder Material an.</p>
+      <p style="margin-top: 48px; font-family: var(--font-body); font-weight: 300; font-size: 16px; color: var(--medium);">Keine Designer:innen gefunden. Passe Suche oder Kategorie an.</p>
     </sc-if>
   </section>
 
@@ -79,7 +92,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024}}">
 class Component extends DCLogic {
-  state = { q: "", mat: "", all: [], loaded: false };
+  state = { q: "", cat: "", sort: "az", all: [], loaded: false };
 
   componentDidMount() {
     import("./shop-data.js").then((mod) => {
@@ -94,30 +107,39 @@ class Component extends DCLogic {
 
   renderVals() {
     const all = this.state.all;
-    const materials = Array.from(new Set(all.flatMap((x) => x.materials))).sort();
-    const { q, mat } = this.state;
+    const CATEGORIES = ["Mode", "Kunst", "Möbel", "Schmuck", "Sonstiges"];
+    const { q, cat, sort } = this.state;
     const ql = q.trim().toLowerCase();
-    const list = all.filter((dz) => {
-      const okMat = !mat || dz.materials.includes(mat);
-      const okQ = !ql || dz.name.toLowerCase().includes(ql) || dz.location.toLowerCase().includes(ql) || dz.materials.some((m) => m.toLowerCase().includes(ql));
-      return okMat && okQ;
+    let list = all.filter((dz) => {
+      const okCat = !cat || dz.cat === cat;
+      const okQ = !ql || dz.name.toLowerCase().includes(ql) || dz.location.toLowerCase().includes(ql) || (dz.cat || "").toLowerCase().includes(ql);
+      return okCat && okQ;
     });
+    list = [...list].sort((a, b) => sort === "za"
+      ? b.name.localeCompare(a.name, "de")
+      : a.name.localeCompare(b.name, "de"));
 
     const openProfile = (e) => { if (e && e.preventDefault) e.preventDefault(); };
 
     return {
       q: q,
       onQ: (e) => this.setState({ q: e.target.value }),
-      matChips: [{ label: "Alle", value: "" }, ...materials.map((m) => ({ label: m, value: m }))].map((c) => ({
+      sort: sort,
+      onSort: (e) => this.setState({ sort: e.target.value }),
+      sortOptions: [
+        { value: "az", label: "Name · A–Z" },
+        { value: "za", label: "Name · Z–A" },
+      ],
+      catChips: [{ label: "Alle", value: "" }, ...CATEGORIES.map((m) => ({ label: m, value: m }))].map((c) => ({
         label: c.label,
-        active: mat === c.value,
-        inactive: mat !== c.value,
-        onClick: () => this.setState({ mat: mat === c.value ? "" : c.value }),
+        active: cat === c.value,
+        inactive: cat !== c.value,
+        onClick: () => this.setState({ cat: cat === c.value ? "" : c.value }),
       })),
       countLabel: list.length + " Designer:innen",
       list: list.map((d) => ({
         photo: d.photo, name: d.name,
-        discipline: d.materials.slice(0, 2).join(" & "),
+        discipline: d.cat || "",
         locationLabel: d.location,
         open: () => this.openProfile(d.id),
       })),

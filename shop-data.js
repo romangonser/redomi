@@ -1,56 +1,62 @@
 // re:do:mi — geteiltes Daten-Modul für Listen- und Detailseiten.
 // Wird per dynamischem import() aus den DC-Logikklassen geladen.
 
-const U = (id, w) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w || 900}&q=72`;
+const U = (id, w) => `assets/fotos/${id}.jpg`;
 
 export const DESIGNERS = [
   {
-    id: "lena-brunner", name: "Lena Brunner", location: "Basel", since: "2019",
-    materials: ["Eiche", "Stahl", "Altholz"], photo: U("1494790108377-be9c29b29330", 600),
+    id: "lena-brunner", name: "Lena Brunner", location: "Basel", since: "2019", cat: "Möbel",
+    materials: ["Holz", "Metall"], photo: "assets/designer-lena.png",
     cover: U("1503602642458-232111445657", 1200),
     bio: "Lena arbeitet mit Altholz aus Abbruchhäusern der Region Basel. Aus Balken, Dielen und Türblättern entstehen Möbel, die ihre Herkunft sichtbar tragen — gebürstet, geölt, nie übermalt.",
   },
   {
-    id: "marco-keller", name: "Marco Keller", location: "Zürich", since: "2021",
-    materials: ["Kupfer", "Glas"], photo: U("1500648767791-00dcc994a43e", 600),
+    id: "marco-keller", name: "Marco Keller", location: "Zürich", since: "2021", cat: "Schmuck",
+    materials: ["Metall", "Glas"], photo: U("1500648767791-00dcc994a43e", 600),
     cover: U("1513506003901-1e6a229e2d15", 1200),
     bio: "Marco verbindet ausgediente Kupferrohre mit gerettetem Glas zu Leuchten und Objekten. Sein Atelier im Kreis 4 ist halb Werkstatt, halb Materiallager.",
   },
   {
-    id: "sofia-meier", name: "Sofia Meier", location: "Bern", since: "2018",
-    materials: ["Textil", "Wolle"], photo: U("1438761681033-6461ffad8d80", 600),
+    id: "sofia-meier", name: "Sofia Meier", location: "Bern", since: "2018", cat: "Mode",
+    materials: ["Textil"], photo: "assets/designer-sofia.webp",
     cover: U("1483985988355-763728e1935b", 1200),
     bio: "Sofia näht aus Textilresten und alter Berufskleidung neue Stücke. Jedes Teil ist ein Unikat — Patchwork mit System, robust und für den Alltag gemacht.",
   },
   {
-    id: "jonas-frei", name: "Jonas Frei", location: "Luzern", since: "2020",
-    materials: ["Metall", "Zahnräder"], photo: U("1507003211169-0a1dd7228f2d", 600),
+    id: "jonas-frei", name: "Jonas Frei", location: "Luzern", since: "2020", cat: "Möbel",
+    materials: ["Metall"], photo: U("1507003211169-0a1dd7228f2d", 600),
     cover: U("1524634126442-357e0eac3c14", 1200),
     bio: "Jonas rettet Metallteile aus stillgelegten Werkstätten und Maschinen. Aus Zahnrädern, Rohren und Blech baut er Leuchten und Sitzmöbel mit industriellem Charakter.",
   },
   {
-    id: "aylin-demir", name: "Aylin Demir", location: "Winterthur", since: "2022",
-    materials: ["Glas", "Keramik"], photo: U("1534528741775-53994a69daeb", 600),
+    id: "aylin-demir", name: "Aylin Demir", location: "Winterthur", since: "2022", cat: "Sonstiges",
+    materials: ["Glas", "Keramik"], photo: "assets/designer-aylin.png",
     cover: U("1578500494198-246f612d3b3d", 1200),
-    bio: "Aylin schmilzt Altglas zu Karaffen, Vasen und Gefässen. Kleine Einschlüsse und Farbschlieren sind für sie kein Makel, sondern die Signatur des Materials.",
+    bio: "Aylin schmilzt Altglas zu Karaffen, Vasen und Gefässen. Kleine Einschlüsse und Farbschlieren sind für sie kein Makel, sondern die Signatur des Materials. Jedes Gefäss entwirft sie zuerst mit dem Stift, bevor das alte Glas im Ofen seine neue Form findet.",
   },
   {
-    id: "pia-luethi", name: "Pia Lüthi", location: "Genf", since: "2017",
-    materials: ["Textil", "Leder"], photo: U("1502685104226-ee32379fefbe", 600),
+    id: "pia-luethi", name: "Pia Lüthi", location: "Genf", since: "2017", cat: "Mode",
+    materials: ["Textil"], photo: U("1502685104226-ee32379fefbe", 600),
     cover: U("1597633425046-08f5110420b5", 1200),
     bio: "Pia arbeitet mit Segeltuch, Lederresten und ausrangierten Planen. Ihre Taschen und Accessoires sind gemacht, um Jahrzehnte zu halten.",
   },
   {
-    id: "noah-steiner", name: "Noah Steiner", location: "Zürich", since: "2021",
-    materials: ["Altholz", "Metall"], photo: U("1506794778202-cad84cf45f1d", 600),
+    id: "noah-steiner", name: "Noah Steiner", location: "Zürich", since: "2021", cat: "Kunst",
+    materials: ["Holz", "Metall"], photo: U("1506794778202-cad84cf45f1d", 600),
     cover: U("1513519245088-0e12902e35ca", 1200),
     bio: "Noah bewegt sich zwischen Möbel und Kunst. Aus geschichtetem Altholz entstehen Wandobjekte und Einzelstücke, die mehr Skulptur als Funktion sind.",
   },
   {
-    id: "romy-caduff", name: "Romy Caduff", location: "Chur", since: "2023",
-    materials: ["Keramik", "Wolle"], photo: U("1487412720507-e7ab37603c6f", 600),
+    id: "romy-caduff", name: "Romy Caduff", location: "Chur", since: "2023", cat: "Sonstiges",
+    materials: ["Keramik", "Textil"], photo: U("1487412720507-e7ab37603c6f", 600),
     cover: U("1584100936595-c0654b55a2e2", 1200),
     bio: "Romy verbindet Bündner Schafwolle mit Keramik zu warmen, taktilen Objekten fürs Zuhause. Ihre Stücke entstehen langsam, in kleinen Serien.",
+  },
+  {
+    id: "elias-roth", name: "Elias Roth", location: "St. Gallen", since: "2022", cat: "Möbel",
+    materials: ["Holz"], photo: "assets/designer-elias.jpg",
+    cover: "assets/elias-cover.png",
+    bio: "Elias sammelt zerbrochene Skateboards aus Skateparks und Shops der ganzen Schweiz. Aus den verleimten Ahornschichten der alten Decks baut er Hocker, Tische und Wandobjekte — jedes Stück ein Unikat, das die Farben und Schrammen seines früheren Lebens auf vier Rollen weiterträgt.",
   },
 ];
 
@@ -60,15 +66,15 @@ export const PRODUCTS = [
     story: "Aus Stoffresten und alten Sportschuhen genäht — kein Paar gleicht dem anderen. Der grüne Tigerprint stammt von einem Vorhang aus den 70ern." },
   { id: "garden-bench-restored", title: "Garden Bench Restored", designerId: "jonas-frei", cat: "Möbel", mat: "Metall", city: "Luzern", price: 420, img: U("1567538096630-e0c55bd6374c"),
     story: "Ein Gartenbank-Gestell aus Gusseisen, entrostet und neu beschichtet, mit Sitzlatten aus geretteten Dielen. Für draussen wie drinnen gemacht." },
-  { id: "travelling-companions", title: "Travelling Companions", designerId: "noah-steiner", cat: "Kunst", mat: "Holz", city: "Basel", price: 55, img: U("1493106641515-6b5631de4bb9"),
-    story: "Kleine Holzfiguren aus Treibholz und Möbelresten — jede mit eigenem Charakter. Eine Serie über das Unterwegssein." },
-  { id: "casual-neu-gedacht", title: "Casual, neu gedacht", designerId: "sofia-meier", cat: "Mode", mat: "Textil", city: "Zürich", price: 140, img: U("1483985988355-763728e1935b"),
-    story: "Ein Oversize-Hemd aus zusammengesetzten Leinenresten. Locker geschnitten, mit sichtbaren Nähten als Gestaltungselement." },
+  { id: "travelling-companions", title: "Travelling Companions", designerId: "noah-steiner", cat: "Kunst", mat: "Holz", city: "Basel", price: 55, img: "assets/travelling-companions.png",
+    story: "Ein Tierobjekt aus gefundenem Blech, Holzresten und alten Rollen — Fundstücke, neu zusammengesetzt zu einem Begleiter auf Rädern." },
+  { id: "casual-neu-gedacht", title: "Patchwork-Schal", designerId: "sofia-meier", cat: "Mode", mat: "Textil", city: "Zürich", price: 140, img: "assets/schal-1.png", gallery: ["assets/schal-1.png", "assets/schal-2.png", "assets/schal-3.png"],
+    story: "Ein wattierter Patchwork-Schal aus alten Quilts und bedruckten Stoffresten. Indigo-Blautöne treffen auf gemusterte Ornamentik — von Hand zusammengesetzt und mit kontrastierender Paspel eingefasst. Jedes Stück ist ein Unikat." },
   { id: "sula-massivholzbett", title: "SULA – Massivholzbett", designerId: "lena-brunner", cat: "Möbel", mat: "Holz", city: "Bern", price: 830, img: U("1505693416388-ac5ce068fe85"),
     story: "Aus Eichenbalken eines abgerissenen Bauernhauses. Die Zapfenlöcher der alten Konstruktion bleiben sichtbar — Geschichte zum Schlafen." },
-  { id: "lesekissen-coral", title: "Lesekissen CORAL", designerId: "romy-caduff", cat: "Objekte", mat: "Textil", city: "Genf", price: 20, img: U("1584100936595-c0654b55a2e2"),
+  { id: "lesekissen-coral", title: "Lesekissen CORAL", designerId: "romy-caduff", cat: "Sonstiges", mat: "Textil", city: "Genf", price: 20, img: U("1584100936595-c0654b55a2e2"),
     story: "Ein keilförmiges Lesekissen, bezogen mit handgefärbter Bündner Schafwolle. Stützt Rücken und Nacken beim Lesen." },
-  { id: "vase-aus-altglas", title: "Vase aus Altglas", designerId: "aylin-demir", cat: "Objekte", mat: "Glas", city: "Bern", price: 68, img: U("1578500494198-246f612d3b3d"),
+  { id: "vase-aus-altglas", title: "Vase aus Altglas", designerId: "aylin-demir", cat: "Sonstiges", mat: "Glas", city: "Bern", price: 68, img: U("1578500494198-246f612d3b3d"),
     story: "Eingeschmolzene Glasflaschen, neu geblasen. Die grünliche Färbung kommt von altem Weinflaschenglas — jede Vase ein Einzelstück." },
   { id: "ohrringe-kupferkreis", title: "Ohrringe «Kupferkreis»", designerId: "marco-keller", cat: "Schmuck", mat: "Metall", city: "Zürich", price: 85, img: U("1611652022419-a9419f74343d"),
     story: "Aus Kupferrohr-Abschnitten gefertigt, von Hand poliert. Leicht zu tragen, mit warmem Kupferton, der mit der Zeit Patina ansetzt." },
@@ -78,32 +84,41 @@ export const PRODUCTS = [
     story: "Geschichtete Holzfragmente in verschiedenen Tönen, zu einem Relief gefügt. Ein Bild, das man auch ertasten kann." },
   { id: "tasche-segeltuch", title: "Tasche aus Segeltuch", designerId: "pia-luethi", cat: "Mode", mat: "Textil", city: "Genf", price: 130, img: U("1597633425046-08f5110420b5"),
     story: "Aus ausgedientem Bootssegel genäht, mit Lederriemen aus Restposten. Wasserabweisend und praktisch unverwüstlich." },
-  { id: "karaffe-klar", title: "Karaffe «Klar»", designerId: "aylin-demir", cat: "Objekte", mat: "Glas", city: "Luzern", price: 74, img: U("1556910103-1c02745aae4d"),
+  { id: "karaffe-klar", title: "Karaffe «Klar»", designerId: "aylin-demir", cat: "Sonstiges", mat: "Glas", city: "Luzern", price: 74, img: U("1556910103-1c02745aae4d"),
     story: "Eine schlanke Karaffe aus eingeschmolzenem Altglas. Klar und schlicht — für Wasser, Wein oder als Vase." },
-  { id: "stehleuchte-rohr", title: "Stehleuchte «Rohr»", designerId: "jonas-frei", cat: "Leuchten", mat: "Metall", city: "Zürich", price: 290, img: U("1507473885765-e6ed057f782c"),
+  { id: "stehleuchte-rohr", title: "Stehleuchte «Rohr»", designerId: "jonas-frei", cat: "Möbel", mat: "Metall", city: "Zürich", price: 290, img: U("1507473885765-e6ed057f782c"),
     story: "Gebaut aus Stahlrohren einer alten Heizungsanlage. Höhenverstellbar, mit warmweissem LED-Licht und Schalter am Fuss." },
-  { id: "tischlampe-glasform", title: "Tischlampe «Glasform»", designerId: "marco-keller", cat: "Leuchten", mat: "Glas", city: "Bern", price: 165, img: U("1513506003901-1e6a229e2d15"),
+  { id: "tischlampe-glasform", title: "Tischlampe «Glasform»", designerId: "marco-keller", cat: "Möbel", mat: "Glas", city: "Bern", price: 165, img: U("1513506003901-1e6a229e2d15"),
     story: "Ein Glaskörper aus geretteten Flaschen, kombiniert mit Kupferfassung. Streut das Licht weich in den Raum." },
-  { id: "pendelleuchte-falt", title: "Pendelleuchte «Falt»", designerId: "jonas-frei", cat: "Leuchten", mat: "Metall", city: "Luzern", price: 220, img: U("1524634126442-357e0eac3c14"),
+  { id: "pendelleuchte-falt", title: "Pendelleuchte «Falt»", designerId: "jonas-frei", cat: "Möbel", mat: "Metall", city: "Luzern", price: 220, img: U("1524634126442-357e0eac3c14"),
     story: "Aus gefaltetem Restblech, pulverbeschichtet. Wirft ein gerichtetes Licht — ideal über Esstisch oder Theke." },
+  { id: "hocker-deckstack", title: "Hocker «Deckstack»", designerId: "elias-roth", cat: "Möbel", mat: "Holz", city: "St. Gallen", price: 240, img: "assets/hocker-1.png", gallery: ["assets/hocker-1.png", "assets/hocker-3.png", "assets/hocker-2.png"],
+    story: "Sitzfläche aus quer verleimten, kaputten Skateboard-Decks — die bunten Ahornschichten und Grafikreste werden zum Muster. Stabil verleimt, von Hand geschliffen und geölt, kein Hocker gleicht dem anderen." },
+  { id: "vase-blanche", title: "Vase Blanche", designerId: "romy-caduff", cat: "Sonstiges", mat: "Textil", city: "Bern", price: 95, img: "assets/vase-blanche.png",
+    story: "Ein gepolsterter Sitzwürfel, von Hand aus alten Outdoor-Seilen und Textilresten umflochten. Farbfelder in Grün, Blau und Petrol — drinnen wie draussen einsetzbar." },
+  { id: "werkstatt-serie-iv", title: "Werkstatt Serie IV", designerId: "sofia-meier", cat: "Sonstiges", mat: "Textil", city: "Bern", price: 320, img: "assets/werkstatt-serie-iv.png",
+    story: "Eine wattierte Nackenrolle aus gebleichtem Werkstatt-Leinen, durchzogen von feinen roten Steppnähten. Schlicht, taktil, in kleiner Serie genäht." },
+  { id: "casual-jacke", title: "Casual, neu gedacht", designerId: "sofia-meier", cat: "Mode", mat: "Textil", city: "Zürich", price: 140, img: "assets/casual-jacke.png",
+    story: "Eine kurze Jacke aus zusammengesetzten Leinen- und Wildlederresten in warmen Sandtönen. Locker geschnitten, mit Kontrast-Manschetten und sichtbaren Nähten." },
+  { id: "amulett-no-3", title: "Amulett No. 3", designerId: "pia-luethi", cat: "Mode", mat: "Textil", city: "Genf", price: 85, img: "assets/amulett-no-3.png",
+    story: "Eine Reisetasche aus einem bedruckten Zementsack, gefüttert und mit kräftigen Gurten versehen. Das Orange-Motiv des Originalsacks bleibt erhalten." },
 ];
 
 // Galerie: Hauptbild + zwei stimmungsvolle Detailaufnahmen je nach Kategorie.
 const ATMO = {
   "Möbel": ["1567538096630-e0c55bd6374c", "1503602642458-232111445657"],
   "Mode": ["1483985988355-763728e1935b", "1597633425046-08f5110420b5"],
-  "Leuchten": ["1524634126442-357e0eac3c14", "1513506003901-1e6a229e2d15"],
   "Kunst": ["1513519245088-0e12902e35ca", "1493106641515-6b5631de4bb9"],
-  "Objekte": ["1578500494198-246f612d3b3d", "1556910103-1c02745aae4d"],
   "Schmuck": ["1611652022419-a9419f74343d", "1515562141207-7a88fb7ce338"],
+  "Sonstiges": ["1578500494198-246f612d3b3d", "1556910103-1c02745aae4d"],
 };
 
 export function getProduct(id) {
   const p = PRODUCTS.find((x) => x.id === id);
   if (!p) return null;
-  const atmo = (ATMO[p.cat] || ATMO["Objekte"]).map((a) => U(a));
+  const atmo = (ATMO[p.cat] || ATMO["Sonstiges"]).map((a) => U(a));
   const designer = DESIGNERS.find((d) => d.id === p.designerId) || null;
-  return { ...p, gallery: [p.img, ...atmo], designer };
+  return { ...p, gallery: p.gallery || [p.img, ...atmo], designer };
 }
 
 export function getDesigner(id) {
@@ -123,12 +138,12 @@ export function designerName(id) {
 // nach Annahme über Re-Do-Mi geteilt.
 export const BRIEFS = [
   {
-    id: "erbsofa-neu-beziehen", title: "Erbsofa neu beziehen", tag: "Textilien", ort: "Bern", date: "19.06.2026",
+    id: "erbsofa-neu-beziehen", title: "Alter Perserteppich", tag: "Textilien", ort: "Bern", date: "19.06.2026",
     poster: "Dominique H.", posterRole: "Verifizierte Kundin", budget: "CHF 800 – 1'400", timeline: "4 – 6 Wochen", responses: 5,
     image: U("1493106641515-6b5631de4bb9", 1100),
-    short: "3-Sitzer aus den 70ern von meiner Grossmutter. Gestell top, Bezug durch — neu beziehen mit Stoff, der eine Geschichte erzählt.",
-    long: "Das Sofa stand 40 Jahre im Wohnzimmer meiner Grossmutter und hat einen festen Platz in meiner Erinnerung. Das Holzgestell ist absolut intakt, aber der originale Bezug ist durchgesessen und an den Armlehnen eingerissen.\n\nIch wünsche mir einen neuen Bezug aus Upcycling-Material — gern Patchwork aus kräftigen Stoffresten, der dem Stück einen zweiten, eigenen Charakter gibt. Wichtig ist mir saubere Polsterarbeit und ein Ergebnis, das wieder Jahrzehnte hält.",
-    needs: ["Polster- & Näharbeit", "Bezug aus Upcycling-Textil", "Abholung & Lieferung in Bern"],
+    short: "Handgeknüpfter Perserteppich aus dem Nachlass meiner Grossmutter. Grundgewebe top, an zwei Ecken durchgelaufen — reparieren statt entsorgen.",
+    long: "Der Teppich lag 40 Jahre im Wohnzimmer meiner Grossmutter und hat einen festen Platz in meiner Erinnerung. Das Grundgewebe und das Muster sind absolut intakt, aber an zwei Ecken und entlang einer Laufspur ist der Flor durchgelaufen und die Fransen sind ausgerissen.\n\nIch wünsche mir eine fachgerechte Reparatur — nachgeknüpfte Stellen, neu gesicherte Kanten und neue Fransen, gern mit gefärbter Restwolle, die dem Stück seinen Charakter lässt. Wichtig ist mir saubere Handarbeit und ein Ergebnis, das wieder Jahrzehnte hält.",
+    needs: ["Knüpf- & Webreparatur", "Kanten & Fransen sichern", "Abholung & Lieferung in Bern"],
   },
   {
     id: "vintage-lampe-umbauen", title: "Vintage-Lampe umbauen", tag: "Leuchten", ort: "Zürich", date: "17.06.2026",
@@ -163,15 +178,60 @@ export const BRIEFS = [
     needs: ["Neu polstern", "Leder-Upcycling, Cognac-Ton", "Gestell erhalten"],
   },
   {
-    id: "eames-stuhl-restaurieren", title: "Eames-Stuhl restaurieren", tag: "Möbel", ort: "Genf", date: "02.06.2026",
+    id: "eames-stuhl-restaurieren", title: "Hochzeitskleid zu Cocktailkleid", tag: "Textilien", ort: "Genf", date: "02.06.2026",
     poster: "Claudia R.", posterRole: "Verifizierte Kundin", budget: "CHF 500 – 900", timeline: "5 – 6 Wochen", responses: 6,
     image: U("1505693416388-ac5ce068fe85", 1100),
-    short: "Sitzschale intakt, Bezug abgenutzt — suche jemanden für eine fachgerechte Restauration.",
-    long: "Ein originaler Eames-Stuhl, dessen Sitzschale noch in sehr gutem Zustand ist. Bezug und Polster sind allerdings stark abgenutzt.\n\nIch suche eine fachgerechte Restauration, die dem Stück gerecht wird — mit Sorgfalt für die originale Form und nachhaltigen Materialien.",
-    needs: ["Fachgerechte Restauration", "Original-Form erhalten", "Nachhaltige Materialien"],
+    short: "Stoff und Spitze wunderschön, Schnitt zu festlich — suche jemanden, der mein Hochzeitskleid in ein tragbares Cocktailkleid umarbeitet.",
+    long: "Mein Hochzeitskleid hängt seit Jahren im Schrank, der Stoff und die Spitze sind in sehr gutem Zustand. Als bodenlanges Brautkleid werde ich es aber nie wieder tragen.\n\nIch suche jemanden, der es fachgerecht zu einem tragbaren Cocktailkleid umarbeitet — gekürzt, neu geschnitten und mit Sorgfalt für die originale Spitze. Mir ist wichtig, dass der Charakter des Stücks erhalten bleibt und ich es im Alltag tragen kann.",
+    needs: ["Schnitt & Näharbeit", "Original-Spitze erhalten", "Anprobe & Anpassung"],
   },
 ];
 
+// ── Nutzer-erstellte Ausschreibungen (über das Formular) ────────────
+// Werden lokal im Browser gespeichert, damit die Detailseite genau das
+// anzeigt, was im Formular ausgefüllt wurde — und nicht den Standard-Brief.
+const USER_BRIEFS_KEY = "rdm_user_briefs";
+
+export function getUserBriefs() {
+  try {
+    const raw = localStorage.getItem(USER_BRIEFS_KEY);
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr) ? arr : [];
+  } catch (e) { return []; }
+}
+
+export function saveUserBrief(brief) {
+  try {
+    const list = getUserBriefs();
+    list.unshift(brief);
+    localStorage.setItem(USER_BRIEFS_KEY, JSON.stringify(list));
+  } catch (e) {}
+  return brief;
+}
+
+// Nutzer-Briefs zuerst (neueste oben), dann die Beispiel-Inserate.
+export function allBriefs() {
+  return [...getUserBriefs(), ...BRIEFS];
+}
+
 export function getBrief(id) {
-  return BRIEFS.find((b) => b.id === id) || null;
+  return getUserBriefs().find((b) => b.id === id)
+    || BRIEFS.find((b) => b.id === id)
+    || null;
+}
+
+// "Was gesucht wird" — sinnvolle Standard-Anforderungen je nach Rubrik.
+// Wird genutzt, wenn eine Ausschreibung keine eigenen Punkte mitbringt.
+const NEEDS_BY_CATEGORY = {
+  "Möbel": ["Schreiner- oder Polsterarbeit", "Abschleifen & Naturöl-Finish", "Abholung & Lieferung in der Region"],
+  "Leuchten": ["Elektrik fachgerecht erneuern", "Umbau auf warmweisse LED", "Patina & Charakter erhalten"],
+  "Textilien": ["Polster- & Näharbeit", "Bezug aus Upcycling-Textil", "Saubere, langlebige Verarbeitung"],
+  "Objekte": ["Restauration & Reparatur", "Materialgerechte Aufarbeitung", "Patina respektieren"],
+  "Schmuck": ["Feine Metall- oder Fassarbeit", "Upcycling-Material verwenden", "Sorgfältige Politur & Finish"],
+  "Kunst": ["Kreative, eigenständige Umsetzung", "Materialgerechte Verarbeitung", "Einzelstück nach Absprache"],
+};
+
+export function needsForCategory(cat) {
+  return NEEDS_BY_CATEGORY[cat] || ["Fachgerechte Umsetzung", "Upcycling-Material bevorzugt", "Abstimmung mit Auftraggeber:in"];
 }
