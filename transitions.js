@@ -6,7 +6,7 @@
   html.style.opacity = '0';
 
   function fadeIn() {
-    html.style.transition = 'opacity 0.22s ease';
+    html.style.transition = 'opacity 0.07s ease';
     html.style.opacity = '1';
   }
 
@@ -20,9 +20,9 @@
   }
 
   function fadeOut(then) {
-    html.style.transition = 'opacity 0.18s ease';
+    html.style.transition = 'opacity 0.06s ease';
     html.style.opacity = '0';
-    setTimeout(then, 190);
+    setTimeout(then, 70);
   }
 
   // Intercept <a> link clicks
