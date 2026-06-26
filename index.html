@@ -23,6 +23,7 @@
     * { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
     .sc-placeholder { border-color: transparent !important; background: transparent !important; box-shadow: none !important; }
     .rdm-scroll::-webkit-scrollbar { display: none; }
+    @view-transition { navigation: auto; }
   </style>
 </helmet>
 <div style="background: var(--white); min-height: 100vh; padding-top: var(--rdm-header-h, 104px);">
@@ -30,9 +31,9 @@
   <dc-import name="Header" active="home" hint-size="100%,104px"></dc-import>
 
   <!-- ════════ HERO ════════ -->
-  <section style="background: var(--white);">
-    <div style="max-width: 1440px; margin: 0 auto; padding: 0 64px; display: grid; grid-template-columns: 1fr 1fr; min-height: 600px;">
-      <div style="display: flex; flex-direction: column; justify-content: center; gap: 30px; padding: 80px 80px 80px 0;">
+  <section style="background: var(--white); display: grid; grid-template-columns: 1fr 1fr; min-height: 600px;">
+    <div style="display: flex; justify-content: flex-end; align-items: center;">
+      <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; justify-content: center; gap: 30px; padding: 80px 80px 80px 64px;">
         <span style="font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.98px; text-transform: uppercase; color: var(--medium);">SCHWEIZ · KREISLAUFWIRTSCHAFT · UPCYCLING</span>
         <h1 class="rdm-hero-title" style="letter-spacing: -0.5px;"><span>Der Markt</span><span class="rdm-hero-title__serif">für Upcycling</span><span class="rdm-hero-title__accent">Kreationen.</span></h1>
         <p style="margin: 0; max-width: 440px; font-family: var(--font-body); font-weight: 300; font-size: 17px; line-height: 1.7; color: var(--medium);">Re-Do-Mi ist der Vermittler innerhalb der Upcycle-Szene — eine Plattform, wo Gestalter:innen ihre Kreationen zeigen, und Kund:innen direkt in Kontakt treten können.</p>
@@ -46,8 +47,8 @@
           <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: 1.12px; color: var(--ink);">6</span><span style="font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted);">Kategorien</span></div>
         </div>
       </div>
-      <div style="position: relative; background: url(assets/hero-shop.jpg) center / cover no-repeat; margin: 0 -64px 0 0; min-height: 600px;"></div>
     </div>
+    <div style="background: url(assets/hero-shop.jpg) center / cover no-repeat; min-height: 600px;"></div>
   </section>
 
   <!-- ════════ NEUHEITEN ════════ -->
